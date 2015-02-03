@@ -1,4 +1,4 @@
-# Relational-schema-for-an-enterprise-with-ER-model
+# Relational schema for an enterprise with ER model
 
 Q1. Design a relational schema for an enterprise with an ER Model 
 
