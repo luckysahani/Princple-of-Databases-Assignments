@@ -49,32 +49,4 @@
 
 
 
-
-% Fully Functional Dependendecy:
-% 	student_rollno -> {name, email, address, sex, birthdate, semester, phone_no, courses_enrolled, cpi, dept, program(b.tech/mtech)}
-% 	course_no -> { Coursename, course_description, credit, level, course_dept, course_instructor, prerequiste}
-% 	dept_name -> {dept_code, dept_location}
-% 	dept_code -> {dept_name, dept_location}
-% 	lab_name -> {lab_location, lab_incharge, department_of_lab}
-% 	course_no, day -> {lecture_time, lecture_location}
-
-% Transitive dependency
-% 	{course_name, rollno} -> {grade} -> {pass/fail}
-% 	{rollno, semester} -> {credits} -> {AP/not}
-% 	{RollNo} -> {Credits, semester} -> {Eligibility for graduation}
-% 	{RollNo} -> {Hall} -> {Warden_Incharge}
-% 	{email} -> {roll_no} -> {name, address}
-% 	{Roll No.} -> {Pincode} -> {City}
-% 	{Roll no., Course} -> {Grades} -> {Pass/Fail}
-% 	{Roll No., Semester} -> {Credits,Semester} -> {Eligible for Graduating}
-% 	{Roll No., Semester} -> {Credits, Semester} -> {AP or not}
-% 	{Roll No.} -> {Pincode} -> {State}
-
-
-% Multivalued Dependencies
-
-% 	{course_no} -> {Instructor}
-% 	{course no} -> {Reference Books
-
-
 \end{document}
