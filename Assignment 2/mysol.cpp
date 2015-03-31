@@ -293,7 +293,7 @@ int main()
 {
 	string input="assgn2_bplus_data.txt",queries="querysample.txt";
 	string file_maxkeys="bplustree.config";
-	string sample_input="sample_input_32.txt"
+	string sample_input="sample_input_32.txt";
 	cout<<"Processing.........\n";
 	intialize_root();
 	set_maxkey_value(file_maxkeys);
