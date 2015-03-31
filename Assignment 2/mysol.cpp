@@ -19,6 +19,7 @@ int max_keys;
 int count=0;
 string root="0.txt";
 string format=".txt";
+string temp_child_1,temp_child_2;
 
 void set_maxkey_value(string filename)
 {
@@ -131,6 +132,7 @@ float insert_key(float key, string key_value, string filename)
 				    	}
 				    }
 				    file.close();
+				    return -1;
         		}
 
 
@@ -139,7 +141,7 @@ float insert_key(float key, string key_value, string filename)
         	else
         	{
         		float allkeys[number_of_elements+1];
-    			string file_array[number_of_elements+1];
+    			string file_array[number_of_elements+1],tempfile1,tempfile2;
         		for (int i = 0,j=0; i < number_of_elements; ++i,++j)
         		{
         			myfile >> file_array[i] >> allkeys[i];
@@ -148,7 +150,35 @@ float insert_key(float key, string key_value, string filename)
         				float return_value= insert_key(key, key_value, file_array[j]);
         				if(return_value != -1)
         				{
-
+        					key[j+1]= key[j];
+        					key[j]= return_value;
+        					file_array[j+1]=temp_child_2;
+        					file_array[j]=temp_child_1;
+        					for (j=j+2,i++; i < number_of_elements; ++i,++j)
+        					{
+        						myfile >> file_array[j] >> key[j];
+        					}
+        					myfile >> file_array[j];
+        					myfile.close();
+        					if(number_of_elements == max_keys)
+        					{
+        						return split(filename,key,file_array,isleaf);
+        					}
+        					else
+        					{
+        						ofstream file (filename.c_str());
+							    if (file.is_open())
+							    {
+							    	file << number_of_elements + 1 << " 0\n";
+							    	for (int i = 0; i < number_of_elements+1; ++i)
+							    	{
+							    		file << file_array[i]<<" "<<key[i]<<endl;
+							    	}
+							    	file<<file_array[i];
+							    }
+							    file.close();
+							    return -1;
+        					}
         				}
         				else
         				{
@@ -262,11 +292,13 @@ int main()
 {
 	string input="assgn2_bplus_data.txt",queries="querysample.txt";
 	string file_maxkeys="bplustree.config";
+	string sample_input="sample_input_32.txt"
 	cout<<"Processing.........\n";
 	intialize_root();
 	set_maxkey_value(file_maxkeys);
 	cout<<"Inserting the points from assgn2_bplus_data.txt\n";
 	// input_init(input);
+	input_init(sample_input);
 	cout<<"Processing the queries\n";
 	// queries_init(queries);
 	return 0;

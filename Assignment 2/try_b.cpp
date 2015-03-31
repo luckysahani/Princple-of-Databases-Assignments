@@ -122,15 +122,18 @@ float insert(float key, char val[], char filename[]){
 					keyarr[j] = ret;
 					j++,j++,i++;
 					// cout << valarr[2] << " Hello"<< endl;
-					for(;i<num_elem;i++,j++){
+					for(;i<num_elem;i++,j++)
+					{
 						fin >> valarr[j] >> keyarr[j];
 					}
 					fin >> valarr[j];
 					fin.close();
-					if(num_elem == max_elem){
+					if(num_elem == max_elem)
+					{
 						return split(filename,keyarr,valarr,isleaf);
 					}
-					else{
+					else
+					{
 						ofstream f;
 						f.open(filename,ofstream::out);
 						f << num_elem+1 << " 0\n";
