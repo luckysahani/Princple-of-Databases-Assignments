@@ -217,6 +217,7 @@ float insert_key(float key, string key_value, string filename)
 				else
 				{
 					ofstream file (filename.c_str());
+					cout<<"check"
 				    if (file.is_open())
 				    {
 				    	int i;
