@@ -111,7 +111,7 @@ void insert_key(float key, string key_value, string filename)
         		}
         		else
         		{
-        			ffstream file (filename.c_str());
+        			ofstream file (filename.c_str());
 				    if (file.is_open())
 				    {
 				    	file << number_of_elements + 1 << " 1\n";

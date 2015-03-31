@@ -1,5 +1,1 @@
 git add .
-git commit -m "working on assignment 2" 
-[master 05cc05a] working on assignment 2
- 3 files changed, 46 insertions(+), 29 deletions(-)
-g++ mysol.cpp -o mysol
