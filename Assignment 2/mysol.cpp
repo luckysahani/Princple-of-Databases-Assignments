@@ -302,7 +302,7 @@ void input_init(string filename)
 			myfile >> key;
 			myfile >> key_value;
 			float return_value=insert_key(key,key_value,root); 
-			if(ret != -1)
+			if(return_value != -1)
 			{
 				string temp_child_3;
 				char Result[50];
@@ -311,7 +311,7 @@ void input_init(string filename)
 				count_total++;
 				ofstream myfile3 (temp_child_3.c_str());
 				myfile3 << "1 0\n";
-				myfile3 << temp_child_1 << " "<< ret << " "<< temp_child_2;
+				myfile3 << temp_child_1 << " "<< return_value << " "<< temp_child_2;
 			}
         }
         myfile.close();
