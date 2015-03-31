@@ -62,9 +62,44 @@ void intialize_root()
 
 float split(string filename, float* allkeys, string allkeys_value[], bool isleaf)
 {
-	cout<<"Split : filename: "<<filename;
-	return -1;
+	cout<<"Split : filename: "<<filename<<endl;
+	tempfile1= filename+format;
+	tempfile2= to_string(count)+format;
+	count++;
+	ofstream myfile1 (tempfile1.c_str());
+	ofstream myfile2 (tempfile2.c_str());
+	int element_count= (max_keys+1)/2;
+	if(isleaf)
+	{
+		myfile1 << element_count<<" 1\n";
+		myfile2 << max_keys + 1 - element_count<<" 1\n";
+		for (int i = 0; i < element_count; ++i)
+		{
+			myfile1 << allkeys[i] << " " << allkeys_value[i]<<endl;
+		}
+		for (int i = element_count; i < max_keys; ++i)
+		{
+			myfile2 << allkeys[i] << " " << allkeys_value[i]<<endl;
+		}
+	}
+	else
+	{
+		element_count= max_keys/2;
+		myfile1 << element_count << " 0\n";
+		myfile2 << max_keys + 1 - element_count << " 0\n";
+		for (int i = 0; i < element_count; ++i)
+		{
+			myfile1 << allkeys_value[i]<< " "<< allkeys[i]<<endl;
+		}
+		myfile1 << allkeys_value[element_count]<<endl;
 
+		for (int i = element_count+1; i < max_keys+1; ++i)
+		{
+			myfile2 << allkeys_value[i]<< " "<< allkeys[i]<<endl;
+		}
+		myfile2 << allkeys_value[max_keys+1]<<endl;
+	}
+	return allkeys_value[element_count];
 }
 
 float insert_key(float key, string key_value, string filename)
@@ -187,27 +222,6 @@ float insert_key(float key, string key_value, string filename)
         				}
         			}
         		}
-        		// if(number_of_elements == max_keys)
-        		// {
-        		// 	for (int i = 0; i < number_of_elements; ++i)
-        		// 	{
-        		// 		myfile >> allkeys[i];//filename
-        		// 		myfile >> allkeys_value[i];//key
-        		// 	}
-        		// 	split(filename, allkeys, allkeys_value, isleaf);
-        		// }
-        		// else
-        		// {
-        		// 	for (int i = 0; i < number_of_elements; ++i)
-        		// 	{
-        		// 		myfile >> file;
-        		// 		myfile >> t_key;
-        		// 		if(key < t_key)
-        		// 		{
-        		// 			insert_key(key, key_value,file);
-        		// 		}
-        		// 	}
-        		// }
         	}
         }
         // myfile.close();
@@ -216,9 +230,6 @@ float insert_key(float key, string key_value, string filename)
     {  
         cout << "Unable to open file "<<filename<<endl; 
     }
-
-
-
 }
 
 void range_query(float start, float end, string filename)
