@@ -2,7 +2,7 @@
 
 Implementing a B+ Tree in C++
 
- */
+*/
 
 #include <fstream>
 // #include<conio>
@@ -11,13 +11,17 @@ Implementing a B+ Tree in C++
 #include <time.h>
 #include <string>
 #include <iostream>
+#include <stdlib.h>
 
 using namespace std;
 int max_keys;
+int count=0;
+string root="0.txt";
+string format=".txt"
 
 void set_maxkey_value(string filename)
 {
-	string line;
+	// string line;
     ifstream myfile (filename.c_str());
     if (myfile.is_open())
     {
@@ -34,6 +38,7 @@ void set_maxkey_value(string filename)
     cout<<"Setting the maxkeys to "<<max_keys<<endl;
 }	
 
+void insert_key()
 
 void queries_init(string filename)
 {
@@ -45,8 +50,23 @@ void queries_init(string filename)
 void input_init(string filename)
 {
 	// cout<<"The filename is "<<filename<<endl;
-
-
+	float key;
+	string key_value;
+	ifstream myfile (filename.c_str());
+    if (myfile.is_open())
+    {
+        while (myfile.good())
+        {
+			fin >> key;
+			fin >> key_value;
+			insert_key(key,key_value);      	
+        }
+        myfile.close();
+    }
+    else 
+    {  
+        cout << "Unable to open file "<<filename<<endl; 
+    }
 	cout<<"Points from the file "<<filename<< " has been inserted \n";
 }
 
