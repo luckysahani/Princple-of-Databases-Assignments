@@ -58,23 +58,32 @@ void intialize_root()
     }
 }
 
-void insert_key(float key, string key_value, string filename)
+
+void split(string filename, float* allkeys, string allkeys_value[], bool isleaf)
+{
+	cout<<"Split : filename: "<<filename;
+
+}
+
+float insert_key(float key, string key_value, string filename)
 {
 	cout<<"Insertion : Key: "<<key<<"\tValue: "<<key_value<<"\tFilename: "<<filename<<endl;
 	int number_of_elements;
 	bool isleaf;
 	float t_key;
-	string t_key_value; 
+	string t_key_value,t_file; 
 	ifstream myfile (filename.c_str());
     if (myfile.is_open())
     {
         while (myfile.good())
         {
         	myfile >> number_of_elements >> isleaf;
-    		float allkeys[number_of_elements+1];
-    		string allkeys_value[number_of_elements+1];
+    		// float allkeys[number_of_elements+1];
+    		// string allkeys_value[number_of_elements+1];
         	if(isleaf)
         	{
+        		float allkeys[number_of_elements+1];
+    			string allkeys_value[number_of_elements+1];
         		bool check = false;
         		for (int i = 0; i < number_of_elements; ++i)
         		{
@@ -128,13 +137,45 @@ void insert_key(float key, string key_value, string filename)
         	}
         	else
         	{
+        		float allkeys[number_of_elements+1];
+    			string file_array[number_of_elements+1];
+        		for (int i = 0,j=0; i < number_of_elements; ++i,++j)
+        		{
+        			myfile >> file_array[i] >> allkeys[i];
+        			if(key < allkeys[i])
+        			{
+        				float return_value= insert_key(key, key_value, file_array[j]);
+        				if(return_value != -1)
+        				{
 
-
-
-
-
-
-
+        				}
+        				else
+        				{
+        					return -1;
+        				}
+        			}
+        		}
+        		// if(number_of_elements == max_keys)
+        		// {
+        		// 	for (int i = 0; i < number_of_elements; ++i)
+        		// 	{
+        		// 		myfile >> allkeys[i];//filename
+        		// 		myfile >> allkeys_value[i];//key
+        		// 	}
+        		// 	split(filename, allkeys, allkeys_value, isleaf);
+        		// }
+        		// else
+        		// {
+        		// 	for (int i = 0; i < number_of_elements; ++i)
+        		// 	{
+        		// 		myfile >> file;
+        		// 		myfile >> t_key;
+        		// 		if(key < t_key)
+        		// 		{
+        		// 			insert_key(key, key_value,file);
+        		// 		}
+        		// 	}
+        		// }
         	}
         }
         // myfile.close();
@@ -224,7 +265,7 @@ int main()
 	intialize_root();
 	set_maxkey_value(file_maxkeys);
 	cout<<"Inserting the points from assgn2_bplus_data.txt\n";
-	input_init(input);
+	// input_init(input);
 	cout<<"Processing the queries\n";
 	// queries_init(queries);
 	return 0;
