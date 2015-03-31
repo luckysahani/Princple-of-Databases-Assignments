@@ -233,7 +233,7 @@ float insert_key(float key, string key_value, string filename)
 				    	file<<file_array[i];
 				    }
 				    file.close();
-				    // return -1;
+				    return -1;
 				}
 				// else
 				// {
@@ -307,17 +307,17 @@ void input_init(string filename)
 			myfile >> key;
 			myfile >> key_value;
 			float return_value=insert_key(key,key_value,root); 
-			// if(return_value != -1)
-			// {
-			// 	string temp_child_3;
-			// 	char Result[50];
-			// 	sprintf ( Result, "%d", count_total );
-			// 	temp_child_3=Result+format;
-			// 	count_total++;
-			// 	ofstream myfile3 (temp_child_3.c_str());
-			// 	myfile3 << "1 0\n";
-			// 	myfile3 << temp_child_1 << " "<< return_value << " "<< temp_child_2;
-			// }
+			if(return_value != -1)
+			{
+				string temp_child_3;
+				char Result[50];
+				sprintf ( Result, "%d", count_total );
+				temp_child_3=Result+format;
+				count_total++;
+				ofstream myfile3 (temp_child_3.c_str());
+				myfile3 << "1 0\n";
+				myfile3 << temp_child_1 << " "<< return_value << " "<< temp_child_2;
+			}
         }
         myfile.close();
     }
