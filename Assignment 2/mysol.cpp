@@ -17,7 +17,7 @@ using namespace std;
 int max_keys;
 int count=0;
 string root="0.txt";
-string format=".txt"
+string format=".txt";
 
 void set_maxkey_value(string filename)
 {
@@ -38,18 +38,59 @@ void set_maxkey_value(string filename)
     cout<<"Setting the maxkeys to "<<max_keys<<endl;
 }	
 
-void insert_key()
+void insert_key(float key, string key_value, string filename)
+{
+	cout<<"Insertion : Key: "<<key<<"\tValue: "<<key_value<<"\tFilename: "<<filename<<endl;
+
+}
+
+void range_query(float start, float end, string filename)
+{
+	cout<<"Range Query : Start ->"<<start << "\t End: "<<end<<endl;
+
+
+}
 
 void queries_init(string filename)
 {
-	// cout<<"The filename is "<<filename<<endl;
-
+	int type_of_query;
+	float start, end, key;
+	string key_value;
+	ifstream myfile (filename.c_str());
+    if (myfile.is_open())
+    {
+        while (myfile.good())
+        {
+			myfile >> type_of_query;
+			if(type_of_query == 0)
+			{
+				myfile >> key;
+				myfile >> key_value;
+				insert_key(key,key_value,root); 
+			}
+			else if(type_of_query == 2)
+			{
+				myfile >> start;
+				myfile >> end;
+				range_query(start,end,root);
+			}
+			else
+			{
+				//IGNORE ANY QUERY OTHER THAN ABOVE 2
+			}
+			     	
+        }
+        myfile.close();
+    }
+    else 
+    {  
+        cout << "Unable to open file "<<filename<<endl; 
+    }
 	cout<<"All the queries have been processed\n";
 }
 
 void input_init(string filename)
 {
-	// cout<<"The filename is "<<filename<<endl;
 	float key;
 	string key_value;
 	ifstream myfile (filename.c_str());
@@ -57,9 +98,9 @@ void input_init(string filename)
     {
         while (myfile.good())
         {
-			fin >> key;
-			fin >> key_value;
-			insert_key(key,key_value);      	
+			myfile >> key;
+			myfile >> key_value;
+			insert_key(key,key_value,root);      	
         }
         myfile.close();
     }

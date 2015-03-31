@@ -1,4 +1,6 @@
-all: 
+all:
+	git add .
+	git commit -m "working on assignment 2" 
 	g++ mysol.cpp -o mysol
 	./mysol
 clean:
