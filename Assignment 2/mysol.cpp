@@ -16,7 +16,7 @@ Implementing a B+ Tree in C++
 
 using namespace std;
 int max_keys;
-int count=0;
+int count;
 string root="0.txt";
 string format=".txt";
 string temp_child_1,temp_child_2;
@@ -44,6 +44,7 @@ void intialize_root()
 	string filename=root;
 	ofstream myfile (filename.c_str());
 	int number_of_elements=0;
+	count=0;
 	bool isleaf = true;
     if (myfile.is_open())
     {
