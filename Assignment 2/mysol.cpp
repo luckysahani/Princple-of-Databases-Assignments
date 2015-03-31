@@ -59,9 +59,10 @@ void intialize_root()
 }
 
 
-void split(string filename, float* allkeys, string allkeys_value[], bool isleaf)
+float split(string filename, float* allkeys, string allkeys_value[], bool isleaf)
 {
 	cout<<"Split : filename: "<<filename;
+	return -1;
 
 }
 
