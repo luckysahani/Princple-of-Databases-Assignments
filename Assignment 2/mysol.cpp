@@ -45,7 +45,7 @@ void intialize_root()
 	string filename=root;
 	ofstream myfile (filename.c_str());
 	int number_of_elements=0;
-	count=0;
+	count_total=0;
 	bool isleaf = true;
     if (myfile.is_open())
     {
@@ -66,8 +66,8 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 {
 	cout<<"Split : filename: "<<filename<<endl;
 	temp_child_1= filename+format;
-	temp_child_2= to_string(count)+format;
-	count++;
+	temp_child_2= to_string(count_total)+format;
+	count_total++;
 	ofstream myfile1 (temp_child_1.c_str());
 	ofstream myfile2 (temp_child_2.c_str());
 	int element_count= (max_keys+1)/2;
