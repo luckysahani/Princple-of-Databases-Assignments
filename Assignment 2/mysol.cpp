@@ -47,6 +47,7 @@ void intialize_root()
     if (myfile.is_open())
     {
         myfile << number_of_elements;
+        myfile << "\n";
         myfile << isleaf;
         myfile.close();
     }
@@ -120,7 +121,7 @@ void queries_init(string filename)
 			if(type_of_query == 0)
 			{
 				myfile >> key;
-				myfile >> "\n";
+				// myfile >> "\n";
 				myfile >> key_value;
 				insert_key(key,key_value,root); 
 			}
