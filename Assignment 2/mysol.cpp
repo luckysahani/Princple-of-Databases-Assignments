@@ -49,6 +49,7 @@ void intialize_root()
         myfile << number_of_elements;
         myfile << "\n";
         myfile << isleaf;
+        myfile << "\n";
         myfile.close();
     }
     else 
