@@ -38,9 +38,64 @@ void set_maxkey_value(string filename)
     cout<<"Setting the maxkeys to "<<max_keys<<endl;
 }	
 
+void intialize_root()
+{
+	string filename=root;
+	ofstream myfile (filename.c_str());
+	int number_of_elements=0;
+	bool isleaf = true;
+    if (myfile.is_open())
+    {
+        myfile << number_of_elements;
+        myfile << isleaf;
+        myfile.close();
+    }
+    else 
+    {  
+        cout << "Unable to open file "<<filename<<endl; 
+    }
+}
+
 void insert_key(float key, string key_value, string filename)
 {
 	cout<<"Insertion : Key: "<<key<<"\tValue: "<<key_value<<"\tFilename: "<<filename<<endl;
+	int number_of_elements;
+	bool isleaf;
+	float t_key;
+	string file; 
+	ifstream myfile (filename.c_str());
+    if (myfile.is_open())
+    {
+        while (myfile.good())
+        {
+        	myfile >> number_of_elements >> isleaf;
+        	if(isleaf)
+        	{
+
+
+
+
+
+        	}
+        	else
+        	{
+
+
+
+
+
+
+
+        	}
+        }
+        myfile.close();
+    }
+    else 
+    {  
+        cout << "Unable to open file "<<filename<<endl; 
+    }
+
+
 
 }
 
@@ -100,7 +155,7 @@ void input_init(string filename)
         {
 			myfile >> key;
 			myfile >> key_value;
-			insert_key(key,key_value,root);      	
+			insert_key(key,key_value,root); 
         }
         myfile.close();
     }
@@ -116,14 +171,12 @@ int main()
 	string input="assgn2_bplus_data.txt",queries="querysample.txt";
 	string file_maxkeys="bplustree.config";
 	cout<<"Processing.........\n";
+	intialize_root();
 	set_maxkey_value(file_maxkeys);
 	cout<<"Inserting the points from assgn2_bplus_data.txt\n";
 	input_init(input);
 	cout<<"Processing the queries\n";
 	queries_init(queries);
-	
-
-
 	return 0;
 }
 

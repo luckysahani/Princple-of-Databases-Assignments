@@ -7,13 +7,15 @@
 using namespace std;
 
 int file_cnt = 1;
-int max_elem  = 1;
+int max_elem  = 2;
 char root[20] = "node_0.txt";
 char fileinit[20] = "node_";
 char fileformat[20] = ".txt";
+char tempfile1[40]= "", tempfile2[40] = "";
 
-int split(float key, float val, char filename[], float* keyarr, char valarr[][20] ){
-	char tempfile1[40]= "", temp[10] = "", temp1[10] = "", tempfile2[40]= "";
+float split(char filename[], float* keyarr, char valarr[][20], bool isleaf ){
+	char temp[10] = "", temp1[10] = "";
+	tempfile2[0]= tempfile1[0] = '\0';
 	strcpy(temp,to_string(file_cnt).c_str());
 	strcat(tempfile1, fileinit), strcat(tempfile1 , temp),	strcat(tempfile1,fileformat);
 	file_cnt++;
@@ -21,23 +23,37 @@ int split(float key, float val, char filename[], float* keyarr, char valarr[][20
 	strcat(tempfile2, fileinit), strcat(tempfile2 , temp1),	strcat(tempfile2,fileformat);
 	file_cnt++;
 	
-	ofstream f1,f2;
+	ofstream f1,f2,f3;
 	f1.open(tempfile1,ofstream::out);
 	f2.open(tempfile2,ofstream::out);
-	f3.open(filename,ofstream::out);
 
-	int temp = (max_elem+1)/2;
-
-	f1 << temp << " 1\n"; 
-	for(int i=0;i<(max_elem+1)/2;i++){
-
+	int temp_cnt = (max_elem+1)/2;
+	
+	if(isleaf){
+		f1 << temp_cnt << " 1\n";
+		f2 << max_elem + 1 -temp_cnt << " 1\n";
+		for(int i=0;i<temp_cnt;i++){
+			f1 << keyarr[i] << " " << valarr[i] << endl;
+		}
+		for(int i=temp_cnt;i <= max_elem;i++){
+			f2 << keyarr[i] << " " << valarr[i] << endl;
+		}
+	}
+	else {
+		f1 << temp_cnt << " 0\n";
+		f2 << max_elem + 1 -temp_cnt << " 0\n";
+		for(int i=0;i<temp_cnt;i++){
+			f1 << valarr[i] << " " << keyarr[i] << endl;
+		}
+		for(int i=temp_cnt;i <= max_elem;i++){
+			f2 << valarr[i] << " " << keyarr[i] << endl;
+		}
 	}
 
-// 	file_cnt++;
-// 	cout << tempfile1 << tempfile2;
+	return keyarr[temp_cnt];
 }
 
-float insert(float key, float val, char filename[]){
+float insert(float key, char val[], char filename[]){
 	int num_elem;
 	bool isleaf;
 	ifstream fin (filename, ifstream::in);
@@ -45,15 +61,41 @@ float insert(float key, float val, char filename[]){
 	float temp_key;
 	char file[40];
 	if(isleaf){
+		float keyarr[num_elem+1];
+		char valarr[num_elem+1][20];
+		bool done = false;
+		for(int i = 0;i< num_elem ;i++){
+			fin >> keyarr[i] >> valarr[i];
+			if(keyarr[i] > key){
+				keyarr[i+1] = keyarr[i];
+				strcpy(valarr[i+1],valarr[i]);
+				keyarr[i] = key;
+				strcpy(valarr[i],val);
+				done=true;
+				i++;
+			}
+		}
+		if(done){
+			fin >> keyarr[num_elem] >> valarr[num_elem];
+		}
+		else{
+			strcpy(valarr[num_elem],val);
+			keyarr[num_elem] = key;
+		}
+		fin.close();
+		printf("Entered at isleaf in insert function\n");
 		string temp_val;
 		if(num_elem == max_elem){
-			float valarr[max_elem];
-			char keyarr[max_elem][20];
-			for(int i = 0;i< num_elem ;i++){
-				fin >> keyarr[i] >> valarr[i];
+			return split(filename,keyarr,valarr,isleaf);
+		}
+		else{
+			ofstream f;
+			f.open(filename,ofstream::out);
+			f << num_elem + 1 << " 1\n";
+			for(int i = 0; i < num_elem +1;i++){
+				f << keyarr[i] << " " << valarr[i] << endl;
 			}
-			fin.close();
-			split(key,val,filename,valarr,keyarr);
+			return -1;
 		}
 	}
 	else {
@@ -63,7 +105,10 @@ float insert(float key, float val, char filename[]){
 			if(key < temp_key){
 				int ret = insert(key, val, file);
 				if(ret != -1){
-
+					
+				}
+				else{
+					return -1;
 				}
 			}
 		}
@@ -88,7 +133,11 @@ bool input(char filename[]){
 
 int main(){
 	float a[10];
+	a[1] = 1.1, a[0] = 1.2;
 	char b[20][20];
-	split(0.5,0.5,root,a,b);
+	strcpy(b[0],"hello");
+	strcpy(b[1],"hello1");
+	char ch[20] = "hardik1";
+	insert(1.2, ch, root);
 	return 0;
 }
