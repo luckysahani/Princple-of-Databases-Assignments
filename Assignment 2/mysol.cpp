@@ -80,7 +80,7 @@ void insert_key(float key, string key_value, string filename)
         		{
         			// myfile >> allkeys[i] >> allkeys_value[i];
         			myfile >> t_key >> t_key_value;
-        			if(key_value < allkeys[i])
+        			if(key < allkeys[i])
         			{
         				allkeys[i+1] = t_key;
         				allkeys_value[i+1] = t_key_value;
