@@ -1,5 +1,3 @@
-4 1
-0.252158 l
-0.655843 yqtntavg
+2 1
 0.549342 tqhdxyjh
-0.326677 cqftp
+0.655843 yqtntavg
