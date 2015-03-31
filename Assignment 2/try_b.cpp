@@ -107,33 +107,28 @@ float insert(float key, char val[], char filename[]){
 		int j=0;
 		for(int i=0;i<num_elem;i++,j++){	
 			fin >> valarr[j] >> keyarr[j];
-			if(key < keyarr[j])
-			{
+			if(key < keyarr[j]){
 				float ret = insert(key, val, valarr[j]);
 				// cout << "I am here "<< valarr[j] <<endl;
 
 				// cout << ret << endl;
 				// return -1;
-				if(ret != -1)
-				{
+				if(ret != -1){
 					strcpy(valarr[j+1],tempfile2);
 					strcpy(valarr[j],tempfile1);
 					keyarr[j+1] = keyarr[j];
 					keyarr[j] = ret;
 					j++,j++,i++;
 					// cout << valarr[2] << " Hello"<< endl;
-					for(;i<num_elem;i++,j++)
-					{
+					for(;i<num_elem;i++,j++){
 						fin >> valarr[j] >> keyarr[j];
 					}
 					fin >> valarr[j];
 					fin.close();
-					if(num_elem == max_elem)
-					{
+					if(num_elem == max_elem){
 						return split(filename,keyarr,valarr,isleaf);
 					}
-					else
-					{
+					else{
 						ofstream f;
 						f.open(filename,ofstream::out);
 						f << num_elem+1 << " 0\n";
@@ -143,8 +138,7 @@ float insert(float key, char val[], char filename[]){
 						f<<valarr[i];
 					}
 				}
-				else
-				{
+				else{
 					return -1;
 				}
 			}

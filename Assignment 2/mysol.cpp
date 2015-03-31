@@ -46,7 +46,7 @@ void intialize_root()
 	string filename=root;
 	ofstream myfile (filename.c_str());
 	int number_of_elements=0;
-	count_total=0;
+	count_total=1;
 	bool isleaf = true;
     if (myfile.is_open())
     {
@@ -68,12 +68,10 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 	cout<<"Split : filename: "<<filename<<endl;
 	string temp;
 	char Result[50];
-	count_total++;
 	sprintf ( Result, "%d", count_total );
-	temp_child_1= Result+format;
-	count_total++;
-	sprintf ( Result, "%d", count_total );
+	temp_child_1= filename;
 	temp_child_2= Result+format;
+	count_total++;
 	ofstream myfile1 (temp_child_1.c_str());
 	ofstream myfile2 (temp_child_2.c_str());
 	int element_count= (max_keys+1)/2;
@@ -97,15 +95,15 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 		myfile2 << max_keys + 1 - element_count << " 0\n";
 		for (int i = 0; i < element_count; ++i)
 		{
-			myfile1 << allkeys_value[i]<< " "<< allkeys[i]<<endl;
+			myfile1 << allkeys_value[i]<< " "<< allkeys[i]<<" ";
 		}
-		myfile1 << allkeys_value[element_count]<<endl;
+		myfile1 << allkeys_value[element_count]<<" ";
 
 		for (int i = element_count+1; i < max_keys+1; ++i)
 		{
-			myfile2 << allkeys_value[i]<< " "<< allkeys[i]<<endl;
+			myfile2 << allkeys_value[i]<< " "<< allkeys[i]<<" ";
 		}
-		myfile2 << allkeys_value[max_keys+1]<<endl;
+		myfile2 << allkeys_value[max_keys+1]<<" ";
 	}
 	return allkeys[element_count];
 }
@@ -185,51 +183,57 @@ float insert_key(float key, string key_value, string filename)
         	{
         		float allkeys[number_of_elements+1];
     			string file_array[number_of_elements+1];
-        		for (int i = 0,j=0; i < number_of_elements; ++i,++j)
+    			int i,j=0;
+        		for (i = 0,j=0; i < number_of_elements; ++i,++j)
         		{
         			myfile >> file_array[i] >> allkeys[i];
         			if(key < allkeys[i])
         			{
-        				float return_value= insert_key(key, key_value, file_array[j]);
-        				if(return_value != -1)
-        				{
-        					allkeys[j+1]= allkeys[j];
-        					allkeys[j]= return_value;
-        					file_array[j+1]=temp_child_2;
-        					file_array[j]=temp_child_1;
-        					for (j=j+2,i++; i < number_of_elements; ++i,++j)
-        					{
-        						myfile >> file_array[j] >> allkeys[j];
-        					}
-        					myfile >> file_array[j];
-        					myfile.close();
-        					if(number_of_elements == max_keys)
-        					{
-        						return split(filename,allkeys,file_array,isleaf);
-        					}
-        					else
-        					{
-        						ofstream file (filename.c_str());
-							    if (file.is_open())
-							    {
-							    	int i;
-							    	file << number_of_elements + 1 << " 0\n";
-							    	for (i = 0; i < number_of_elements+1; ++i)
-							    	{
-							    		file << file_array[i]<<" "<<allkeys[i]<<endl;
-							    	}
-							    	file<<file_array[i];
-							    }
-							    file.close();
-							    return -1;
-        					}
-        				}
-        				else
-        				{
-        					return -1;
-        				}
+        				break;
         			}
         		}
+				float return_value= insert_key(key, key_value, file_array[j]);
+				if(return_value != -1)
+				{
+					allkeys[j+1]= allkeys[j];
+					allkeys[j]= return_value;
+					file_array[j+1]=temp_child_2;
+					file_array[j]=temp_child_1;
+					for (j=j+2,i++; i < number_of_elements; ++i,++j)
+					{
+						myfile >> file_array[j] >> allkeys[j];
+					}
+					myfile >> file_array[j];
+					myfile.close();
+				}
+				else
+				{
+					return -1;
+				}
+				if(number_of_elements == max_keys)
+				{
+					return split(filename,allkeys,file_array,isleaf);
+				}
+				else
+				{
+					ofstream file (filename.c_str());
+				    if (file.is_open())
+				    {
+				    	int i;
+				    	file << number_of_elements + 1 << " 0\n";
+				    	for (i = 0; i < number_of_elements+1; ++i)
+				    	{
+				    		file << file_array[i]<<" "<<allkeys[i]<<endl;
+				    	}
+				    	file<<file_array[i];
+				    }
+				    file.close();
+				    return -1;
+				}
+				// else
+				// {
+				// 	return -1;
+				// }
         	}
         }
         // myfile.close();
