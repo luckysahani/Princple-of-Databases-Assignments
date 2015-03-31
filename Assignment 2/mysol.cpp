@@ -101,7 +101,7 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 		}
 		myfile2 << allkeys_value[max_keys+1]<<endl;
 	}
-	return allkeys_value[element_count];
+	return allkeys[element_count];
 }
 
 float insert_key(float key, string key_value, string filename)
