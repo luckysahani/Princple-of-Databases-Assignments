@@ -150,19 +150,19 @@ float insert_key(float key, string key_value, string filename)
         				float return_value= insert_key(key, key_value, file_array[j]);
         				if(return_value != -1)
         				{
-        					key[j+1]= key[j];
-        					key[j]= return_value;
+        					allkeys[j+1]= allkeys[j];
+        					allkeys[j]= return_value;
         					file_array[j+1]=temp_child_2;
         					file_array[j]=temp_child_1;
         					for (j=j+2,i++; i < number_of_elements; ++i,++j)
         					{
-        						myfile >> file_array[j] >> key[j];
+        						myfile >> file_array[j] >> allkeys[j];
         					}
         					myfile >> file_array[j];
         					myfile.close();
         					if(number_of_elements == max_keys)
         					{
-        						return split(filename,key,file_array,isleaf);
+        						return split(filename,allkeys,file_array,isleaf);
         					}
         					else
         					{
@@ -172,7 +172,7 @@ float insert_key(float key, string key_value, string filename)
 							    	file << number_of_elements + 1 << " 0\n";
 							    	for (int i = 0; i < number_of_elements+1; ++i)
 							    	{
-							    		file << file_array[i]<<" "<<key[i]<<endl;
+							    		file << file_array[i]<<" "<<allkeys[i]<<endl;
 							    	}
 							    	file<<file_array[i];
 							    }
