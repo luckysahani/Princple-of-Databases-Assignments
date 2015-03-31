@@ -16,7 +16,8 @@ Implementing a B+ Tree in C++
 
 using namespace std;
 
-int max_keys,count;
+int max_keys;
+int count_total;
 string root="0.txt";
 string format=".txt";
 string temp_child_1,temp_child_2;
