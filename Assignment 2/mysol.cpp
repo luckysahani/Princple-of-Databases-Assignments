@@ -228,7 +228,7 @@ float insert_key(float key, string key_value, string filename)
 				    	file<<file_array[i];
 				    }
 				    file.close();
-				    return -1;
+				    // return -1;
 				}
 				// else
 				// {
