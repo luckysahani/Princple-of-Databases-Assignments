@@ -15,7 +15,7 @@ Implementing a B+ Tree in C++
 #include <algorithm>
 
 using namespace std;
-using std::to_string;
+// using std::to_string;
 
 int max_keys;
 int count_total;
@@ -66,8 +66,10 @@ void intialize_root()
 float split(string filename, float* allkeys, string allkeys_value[], bool isleaf)
 {
 	cout<<"Split : filename: "<<filename<<endl;
+	string temp;
+	sprintf ( temp, "%d", count_total );
 	temp_child_1= filename+format;
-	temp_child_2= to_string(count_total)+format;
+	temp_child_2= temp+format;
 	count_total++;
 	ofstream myfile1 (temp_child_1.c_str());
 	ofstream myfile2 (temp_child_2.c_str());
