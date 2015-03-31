@@ -19,7 +19,7 @@ using namespace std;
 
 int max_keys;
 int count_total;
-string root="0";
+string root="0.txt";
 string format=".txt";
 string temp_child_1,temp_child_2;
 
@@ -70,7 +70,7 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 	char Result[50];
 	count_total++;
 	sprintf ( Result, "%d", count_total );
-	temp_child_1= filename+format;
+	temp_child_1= filename;
 	temp_child_2= Result+format;
 	ofstream myfile1 (temp_child_1.c_str());
 	ofstream myfile2 (temp_child_2.c_str());
