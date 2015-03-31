@@ -307,17 +307,17 @@ void input_init(string filename)
 			myfile >> key;
 			myfile >> key_value;
 			float return_value=insert_key(key,key_value,root); 
-			if(return_value != -1)
-			{
-				string temp_child_3;
-				char Result[50];
-				sprintf ( Result, "%d", count_total );
-				temp_child_3=Result+format;
-				count_total++;
-				ofstream myfile3 (temp_child_3.c_str());
-				myfile3 << "1 0\n";
-				myfile3 << temp_child_1 << " "<< return_value << " "<< temp_child_2;
-			}
+			// if(return_value != -1)
+			// {
+			// 	string temp_child_3;
+			// 	char Result[50];
+			// 	sprintf ( Result, "%d", count_total );
+			// 	temp_child_3=Result+format;
+			// 	count_total++;
+			// 	ofstream myfile3 (temp_child_3.c_str());
+			// 	myfile3 << "1 0\n";
+			// 	myfile3 << temp_child_1 << " "<< return_value << " "<< temp_child_2;
+			// }
         }
         myfile.close();
     }
@@ -332,7 +332,7 @@ int main()
 {
 	string input="assgn2_bplus_data.txt",queries="querysample.txt";
 	string file_maxkeys="bplustree.config";
-	string sample_input="sample_input_32.txt";
+	string sample_input="a.txt";
 	cout<<"Processing.........\n";
 	intialize_root();
 	set_maxkey_value(file_maxkeys);
