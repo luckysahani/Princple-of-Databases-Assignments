@@ -67,9 +67,10 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 {
 	cout<<"Split : filename: "<<filename<<endl;
 	string temp;
-	sprintf ( temp, "%d", count_total );
+	char Result[50];
+	sprintf ( Result, "%d", count_total );
 	temp_child_1= filename+format;
-	temp_child_2= temp+format;
+	temp_child_2= Result+format;
 	count_total++;
 	ofstream myfile1 (temp_child_1.c_str());
 	ofstream myfile2 (temp_child_2.c_str());
