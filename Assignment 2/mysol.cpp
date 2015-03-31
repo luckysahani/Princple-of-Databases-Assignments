@@ -155,6 +155,10 @@ float insert_key(float key, string key_value, string filename)
 					allkeys_value[number_of_elements]=key_value;
 					check = true;
         		}
+        		else
+        		{
+        			myfile >> allkeys[number_of_elements] >> allkeys_value[number_of_elements];
+        		}
         		myfile.close();
         		cout<<"Isleaf function\n";
         		if(number_of_elements == max_keys)
