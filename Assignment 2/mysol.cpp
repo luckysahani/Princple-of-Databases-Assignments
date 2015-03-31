@@ -169,8 +169,9 @@ float insert_key(float key, string key_value, string filename)
         						ofstream file (filename.c_str());
 							    if (file.is_open())
 							    {
+							    	int i;
 							    	file << number_of_elements + 1 << " 0\n";
-							    	for (int i = 0; i < number_of_elements+1; ++i)
+							    	for (i = 0; i < number_of_elements+1; ++i)
 							    	{
 							    		file << file_array[i]<<" "<<allkeys[i]<<endl;
 							    	}
