@@ -15,6 +15,7 @@ Implementing a B+ Tree in C++
 #include <algorithm>
 
 using namespace std;
+using std::to_string;
 
 int max_keys;
 int count_total;
