@@ -63,11 +63,11 @@ void intialize_root()
 float split(string filename, float* allkeys, string allkeys_value[], bool isleaf)
 {
 	cout<<"Split : filename: "<<filename<<endl;
-	tempfile1= filename+format;
-	tempfile2= to_string(count)+format;
+	temp_child_1= filename+format;
+	temp_child_2= to_string(count)+format;
 	count++;
-	ofstream myfile1 (tempfile1.c_str());
-	ofstream myfile2 (tempfile2.c_str());
+	ofstream myfile1 (temp_child_1.c_str());
+	ofstream myfile2 (temp_child_2.c_str());
 	int element_count= (max_keys+1)/2;
 	if(isleaf)
 	{
@@ -176,7 +176,7 @@ float insert_key(float key, string key_value, string filename)
         	else
         	{
         		float allkeys[number_of_elements+1];
-    			string file_array[number_of_elements+1],tempfile1,tempfile2;
+    			string file_array[number_of_elements+1];
         		for (int i = 0,j=0; i < number_of_elements; ++i,++j)
         		{
         			myfile >> file_array[i] >> allkeys[i];
