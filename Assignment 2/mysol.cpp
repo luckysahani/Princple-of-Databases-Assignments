@@ -12,6 +12,7 @@ Implementing a B+ Tree in C++
 #include <string>
 #include <iostream>
 #include <stdlib.h>
+#include <algorithm>
 
 using namespace std;
 int max_keys;
@@ -21,7 +22,6 @@ string format=".txt";
 
 void set_maxkey_value(string filename)
 {
-	// string line;
     ifstream myfile (filename.c_str());
     if (myfile.is_open())
     {
@@ -47,7 +47,7 @@ void intialize_root()
     if (myfile.is_open())
     {
         myfile << number_of_elements;
-        myfile << "\n";
+        myfile << "\t";
         myfile << isleaf;
         myfile << "\n";
         myfile.close();
@@ -64,17 +64,55 @@ void insert_key(float key, string key_value, string filename)
 	int number_of_elements;
 	bool isleaf;
 	float t_key;
-	string file; 
+	string t_key_value; 
 	ifstream myfile (filename.c_str());
     if (myfile.is_open())
     {
         while (myfile.good())
         {
         	myfile >> number_of_elements >> isleaf;
+    		float allkeys[number_of_elements+1];
+    		string allkeys_value[number_of_elements+1];
         	if(isleaf)
         	{
-
-
+        		bool check = false;
+        		for (int i = 0; i < number_of_elements; ++i)
+        		{
+        			// myfile >> allkeys[i] >> allkeys_value[i];
+        			myfile >> t_key >> t_key_value;
+        			if(key_value < allkeys[i])
+        			{
+        				allkeys[i+1] = t_key;
+        				allkeys_value[i+1] = t_key_value;
+        				if(!check)
+        				{
+        					allkeys[i]=key;
+        					allkeys_value[i]=key_value;
+        					check = true;
+        				}
+        			}
+        			else
+        			{
+        				allkeys[i]=t_key;
+        				allkeys_value[i]=t_key_value;
+        			}
+        		}
+        		if(!check)
+        		{
+        			allkeys[number_of_elements]=key;
+					allkeys_value[number_of_elements]=key_value;
+					check = true;
+        		}
+        		myfile.close();
+        		cout<<"Isleaf function\n";
+        		if(number_of_elements == max_keys)
+        		{
+        			return split(filename, allkeys, allkeys_value, isleaf);
+        		}
+        		else
+        		{
+        			ofstream file;
+        		}
 
 
 
@@ -90,7 +128,7 @@ void insert_key(float key, string key_value, string filename)
 
         	}
         }
-        myfile.close();
+        // myfile.close();
     }
     else 
     {  
@@ -179,30 +217,9 @@ int main()
 	cout<<"Inserting the points from assgn2_bplus_data.txt\n";
 	input_init(input);
 	cout<<"Processing the queries\n";
-	queries_init(queries);
+	// queries_init(queries);
 	return 0;
 }
-
-
-
-
-// void file_reader()
-// { 
-//     string line;
-//     ifstream myfile ("example.txt");
-//     if (myfile.is_open())
-//     {
-//         while (myfile.good())
-//         {
-//           stream_reader(myfile);
-//         }
-//         myfile.close();
-//     }
-//     else 
-//     {  
-//         cout << "Unable to open file"; 
-//     }
-// }
 
 // void stream_reader(istream& stream)
 // {
