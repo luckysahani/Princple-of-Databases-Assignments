@@ -8,6 +8,7 @@ all:
 	cp mysol.cpp bin/mysol.cpp
 	cp querysample.txt bin/querysample.txt
 	g++ bin/mysol.cpp -o bin/mysol
-	./bin/mysol
+	cd bin
+	./mysol
 clean:
 	rm -rf bin/
