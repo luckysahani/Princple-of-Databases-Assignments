@@ -329,8 +329,8 @@ void input_init(string filename)
 	ifstream myfile (filename.c_str());
     if (myfile.is_open())
     {
-        // while (myfile.good())
-        // {
+        while (myfile.good())
+        {
 			myfile >> key;
 			myfile >> key_value;
 			cout<<"key and value is"<< key << key_value << endl;
@@ -347,7 +347,7 @@ void input_init(string filename)
 				myfile3 << temp_child_1 << " "<< return_value << " "<< temp_child_2 << " ";
 				root=temp_child_3;
 			}
-        // }
+        }
         myfile.close();
     }
     else 
