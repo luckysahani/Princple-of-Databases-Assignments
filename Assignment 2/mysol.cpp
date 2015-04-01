@@ -127,7 +127,8 @@ float insert_key(float key, string key_value, string filename)
     		// string allkeys_value[number_of_elements+1];
         	if(isleaf)
         	{
-        		cout<<"entered isleaf";
+        		// cout<<"entered isleaf";
+        		cout<<"Isleaf function\n";
         		float allkeys[number_of_elements+1];
     			string allkeys_value[number_of_elements+1];
         		bool check = false;
@@ -163,7 +164,7 @@ float insert_key(float key, string key_value, string filename)
         			myfile >> allkeys[number_of_elements] >> allkeys_value[number_of_elements];
         		}
         		myfile.close();
-        		cout<<"Isleaf function\n";
+        		
         		if(number_of_elements == max_keys)
         		{
         			float x= split(filename, allkeys, allkeys_value, isleaf);
@@ -189,6 +190,7 @@ float insert_key(float key, string key_value, string filename)
         	}
         	else
         	{
+        		cout<<"Not a leaf \n";
         		float allkeys[number_of_elements+1];
     			string file_array[number_of_elements+1];
     			int i,j=0;
