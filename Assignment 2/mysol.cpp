@@ -131,8 +131,8 @@ float insert_key(float key, string key_value, string filename)
         	{
         		// //cout<<"entered isleaf";
         		//cout<<"Isleaf function\n";
-        		float allkeys[number_of_elements+1];
-    			string allkeys_value[number_of_elements+1];
+        		float allkeys[max_keys+4];
+    			string allkeys_value[max_keys+4];
         		bool check = false;
         		for (int i = 0; i < number_of_elements; ++i)
         		{
