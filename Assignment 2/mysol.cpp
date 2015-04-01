@@ -198,7 +198,7 @@ float insert_key(float key, string key_value, string filename)
     			int i,j=0;
         		for (i = 0,j=0; i < number_of_elements; ++i,++j)
         		{
-        			myfile >> file_array[i] >> allkeys[i];
+        			myfile >> file_array[j] >> allkeys[j];
         			if(key < allkeys[j])
         			{
         				break;
