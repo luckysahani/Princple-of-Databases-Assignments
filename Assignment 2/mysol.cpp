@@ -333,7 +333,7 @@ void input_init(string filename)
         {
 			myfile >> key;
 			myfile >> key_value;
-			cout<<"key and value is"<< key << key_value << endl;
+			cout<<"\n\n\nkey and value is"<< key << key_value << endl;
 			float return_value=insert_key(key,key_value,root); 
 			if(return_value != -1)
 			{
