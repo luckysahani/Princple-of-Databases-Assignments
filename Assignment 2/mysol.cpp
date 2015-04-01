@@ -341,6 +341,7 @@ void input_init(string filename)
 			myfile >> key_value;
 			cout<<"\n\n\nkey and value is"<< key << key_value << endl;
 			float return_value=insert_key(key,key_value,root); 
+			cout<<"\n\n\nkey and value is"<< key << key_value<<" ........returned with "<<return_value << endl;
 			if(return_value != -1)
 			{
 				string temp_child_3;
@@ -375,7 +376,7 @@ int main()
 	cout<<"Inserting the points from assgn2_bplus_data.txt\n";
 	// input_init(input);
 	input_init(sample_input);
-	cout<<"Processing the queries\n";
+	// cout<<"Processing the queries\n";
 	// queries_init(queries);
 	return 0;
 }
