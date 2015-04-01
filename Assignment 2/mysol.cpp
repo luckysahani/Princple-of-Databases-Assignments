@@ -175,7 +175,7 @@ float insert_key(float key, string key_value, string filename)
         				cout<<"allkeys["<<k<<"] == "<<allkeys[k]<<"....allkeys_value["<<k<<"]=="<<allkeys_value[k]<<endl;
         			}
         			float x= split(filename, allkeys, allkeys_value, isleaf);
-        			cout<<"\nhi\n";
+        			// cout<<"\nhi\n";
         			return x;
         		}
         		else
@@ -350,6 +350,7 @@ void input_init(string filename)
 			// cout<<"\n\n\nkey and value is"<< key << key_value << endl;
 			float return_value=insert_key(key,key_value,root); 
 			// cout<<"\n\n\nkey and value is"<< key << key_value<<" ........returned with "<<return_value << endl;
+			cout<<"\nhi\n";
 			if(return_value != -1)
 			{
 				string temp_child_3;
