@@ -28,10 +28,10 @@ void set_maxkey_value(string filename)
     ifstream myfile (filename.c_str());
     if (myfile.is_open())
     {
-        while (myfile.good())
-        {
+        // while (myfile.good())
+        // {
         	myfile >> max_keys;
-        }
+        // }
         myfile.close();
     }
     else 
@@ -120,8 +120,8 @@ float insert_key(float key, string key_value, string filename)
 	ifstream myfile (filename.c_str());
     if (myfile.is_open())
     {
-        while (myfile.good())
-        {
+        // while (myfile.good())
+        // {
         	myfile >> number_of_elements >> isleaf;
     		// float allkeys[number_of_elements+1];
     		// string allkeys_value[number_of_elements+1];
@@ -267,7 +267,7 @@ float insert_key(float key, string key_value, string filename)
 				// 	return -1;
 				// }
         	}
-        }
+        // }
         // myfile.close();
     }
     else 
@@ -291,8 +291,8 @@ void queries_init(string filename)
 	ifstream myfile (filename.c_str());
     if (myfile.is_open())
     {
-        while (myfile.good())
-        {
+        // while (myfile.good())
+        // {
 			myfile >> type_of_query;
 			if(type_of_query == 0)
 			{
@@ -312,7 +312,7 @@ void queries_init(string filename)
 				//IGNORE ANY QUERY OTHER THAN ABOVE 2
 			}
 			     	
-        }
+        // }
         myfile.close();
     }
     else 
@@ -329,8 +329,8 @@ void input_init(string filename)
 	ifstream myfile (filename.c_str());
     if (myfile.is_open())
     {
-        while (myfile.good())
-        {
+        // while (myfile.good())
+        // {
 			myfile >> key;
 			myfile >> key_value;
 			cout<<"key and value is"<< key << key_value << endl;
@@ -347,7 +347,7 @@ void input_init(string filename)
 				myfile3 << temp_child_1 << " "<< return_value << " "<< temp_child_2 << " ";
 				root=temp_child_3;
 			}
-        }
+        // }
         myfile.close();
     }
     else 
