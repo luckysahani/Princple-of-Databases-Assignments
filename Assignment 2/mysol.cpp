@@ -381,7 +381,7 @@ int main()
 	string input="assgn2_bplus_data.txt",queries="querysample.txt";
 	string file_maxkeys="bplustree.config";
 	string sample_input="a.txt";
-	//cout<<"Processing.........\n";
+	cout<<"Processing.........\n";
 	intialize_root();
 	set_maxkey_value(file_maxkeys);
 	//cout<<"Inserting the points from assgn2_bplus_data.txt\n";
