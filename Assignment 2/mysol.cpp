@@ -223,8 +223,8 @@ float insert_key(float key, string key_value, string filename)
 				}
 				else
 				{
-					myfile>> allkeys_value[j];
-					float return_value = insert_key(key, key_value, allkeys_value[j]);
+					myfile>> file_array[j];
+					float return_value = insert_key(key, key_value, file_array[j]);
 					if(return_value == -1)
 					{
 						myfile.close();
@@ -232,8 +232,8 @@ float insert_key(float key, string key_value, string filename)
 					}
 					else
 					{
-						allkeys_value[j+1]= temp_child_2;
-						allkeys_value[j] = temp_child_1;
+						file_array[j+1]= temp_child_2;
+						file_array[j] = temp_child_1;
 						allkeys[j] = return_value;
 						myfile.close();
 					}
