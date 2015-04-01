@@ -168,6 +168,10 @@ float insert_key(float key, string key_value, string filename)
         		if(number_of_elements == max_keys)
         		{
         			cout<<"It is a leaf , calling split from insert\n";
+        			for (int k = 0; k < number_of_elements; ++k)
+        			{
+        				cout<<"allkeys["<<k<<"] == "<<allkeys[k]<<"....allkeys_value["<<k<<"]=="<<allkeys_value[k]<<endl;
+        			}
         			float x= split(filename, allkeys, allkeys_value, isleaf);
         			return x;
         		}
