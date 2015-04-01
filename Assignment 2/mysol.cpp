@@ -65,7 +65,7 @@ void intialize_root()
 
 float split(string filename, float* allkeys, string allkeys_value[], bool isleaf)
 {
-	cout<<"Split : filename: "<<filename<<endl;
+	cout<<"Split : filename: "<<filename<<"....isleaf:"<<isleaf<<endl;
 	string temp;
 	char Result[50];
 	sprintf ( Result, "%d", count_total );
