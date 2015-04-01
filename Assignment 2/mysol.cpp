@@ -88,7 +88,6 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 		{
 			myfile2 <<" "<< allkeys[i] << " " << allkeys_value[i]<<" ";
 		}
-		cout<<"\nhi\n";
 	}
 	else
 	{
@@ -106,6 +105,7 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 		}
 		myfile2 <<" "<< allkeys_value[max_keys+1]<<" ";
 	}
+		cout<<"\nhi\n";
 	myfile1.close();
 	myfile2.close();
 
