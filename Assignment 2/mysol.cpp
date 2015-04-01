@@ -167,6 +167,7 @@ float insert_key(float key, string key_value, string filename)
         		
         		if(number_of_elements == max_keys)
         		{
+        			cout<<"It is a leaf , calling split from insert";
         			float x= split(filename, allkeys, allkeys_value, isleaf);
         			return x;
         		}
@@ -244,7 +245,8 @@ float insert_key(float key, string key_value, string filename)
 				if(number_of_elements == max_keys)
 				{
 					cout<<"Not a leaf , calling split from insert";
-					return split(filename,allkeys,file_array,isleaf);
+					float x= split(filename,allkeys,file_array,isleaf);
+					retrun x;
 				}
 				else
 				{
