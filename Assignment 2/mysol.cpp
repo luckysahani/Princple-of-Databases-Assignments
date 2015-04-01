@@ -18,7 +18,7 @@ using namespace std;
 // using std::to_string;
 
 int max_keys;
-int count_total;
+int count_total=1;
 string root="0.txt";
 string format=".txt";
 string temp_child_1,temp_child_2;
@@ -81,11 +81,11 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 		myfile1 << " "<<element_count<<" 1\n";
 		for (int i = 0; i < element_count; ++i)
 		{
-			myfile1 <<" "<< allkeys[i] << " " << allkeys_value[i]<<endl;
+			myfile1 <<" "<< allkeys[i] << " " << allkeys_value[i]<<" ";
 		}
-		for (int i = element_count; i < max_keys; ++i)
+		for (int i = element_count; i <= max_keys; ++i)
 		{
-			myfile2 <<" "<< allkeys[i] << " " << allkeys_value[i]<<endl;
+			myfile2 <<" "<< allkeys[i] << " " << allkeys_value[i]<<" ";
 		}
 	}
 	else

@@ -6,7 +6,7 @@
 #include <string.h>
 using namespace std;
 
-int file_cnt = 1, max_elem  = 5;
+int file_cnt = 1, max_elem  = 8;
 string root = "node_0.txt";
 string fileinit = "node_", fileformat = ".txt", tempfile1= "", tempfile2 = "";
 
