@@ -92,14 +92,14 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 	{
 		element_count= max_keys/2;
 		myfile1 << " "<<element_count << " 0\n";
-		myfile2 <<" "<< max_keys + 1 - element_count << " 0\n";
+		myfile2 <<" "<< max_keys - element_count << " 0\n";
 		for (int i = 0; i < element_count; ++i)
 		{
 			myfile1 << " "<< allkeys_value[i]<< " "<< allkeys[i]<<" ";
 		}
 		myfile1 <<" "<< allkeys_value[element_count]<<" ";
 		myfile1.close();
-		for (int i = element_count+1; i < max_keys+1; ++i)
+		for (int i = element_count+1; i <= max_keys+1; ++i)
 		{
 			myfile2 <<" "<< allkeys_value[i]<< " "<< allkeys[i]<<" ";
 		}
