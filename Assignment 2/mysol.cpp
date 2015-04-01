@@ -246,7 +246,7 @@ float insert_key(float key, string key_value, string filename)
 				{
 					cout<<"Not a leaf , calling split from insert";
 					float x= split(filename,allkeys,file_array,isleaf);
-					retrun x;
+					return x;
 				}
 				else
 				{
