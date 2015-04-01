@@ -75,7 +75,7 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 	ofstream myfile1 (temp_child_1.c_str());
 	ofstream myfile2 (temp_child_2.c_str());
 	int element_count= (max_keys+1)/2;
-	cout<<"Tempo file: "<<temp_child_1<temp_child_2<<endl;
+	cout<<"Tempo file: "<<temp_child_1<<temp_child_2<<endl;
 	if(isleaf)
 	{
 		myfile2 << " "<<max_keys + 1 - element_count<<" 1\n";
