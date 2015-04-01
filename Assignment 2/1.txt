@@ -1,5 +1,5 @@
 5 1
-0.539061 tpprau
 0.420012 dybvb
-5.8889e-39 dybvb
+0.102084 ooq
+0.539061 tpprau
 0.794226 xgelshx
