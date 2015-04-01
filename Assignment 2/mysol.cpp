@@ -201,7 +201,7 @@ float insert_key(float key, string key_value, string filename)
         	{
         		cout<<"Not a leaf \n";
         		float allkeys[number_of_elements+1];
-    			string file_array[number_of_elements+1];
+    			string file_array[number_of_elements+1]="";
     			int i,j=0;
         		for (i = 0,j=0; i < number_of_elements; ++i,++j)
         		{
