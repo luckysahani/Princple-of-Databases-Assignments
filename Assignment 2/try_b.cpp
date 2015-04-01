@@ -19,33 +19,33 @@ float split(string filename, float* keyarr, string valarr[], bool isleaf ){
 	ofstream f1,f2,f3;
 	f1.open(tempfile1.c_str(),ofstream::out);
 	f2.open(tempfile2.c_str(),ofstream::out);
-	int temp_cnt = (max_elem+1)/2;
+	int element_count = (max_elem+1)/2;
 	if(isleaf){
-		f1 << temp_cnt << " 1\n";
-		f2 << max_elem + 1 -temp_cnt << " 1\n";
-		for(int i=0;i<temp_cnt;i++){
+		f1 << element_count << " 1\n";
+		f2 << max_elem + 1 -element_count << " 1\n";
+		for(int i=0;i<element_count;i++){
 			f1 << keyarr[i] << " " << valarr[i] << " ";
 		}
-		for(int i=temp_cnt;i <= max_elem;i++){
+		for(int i=element_count;i <= max_elem;i++){
 			f2 << keyarr[i] << " " << valarr[i] << " ";
 		}
 	}
 	else {
-		temp_cnt = max_elem/2;
-		f1 << temp_cnt << " 0\n";
-		f2 << max_elem - temp_cnt << " 0\n";
-		for(int i=0;i<temp_cnt;i++){
+		element_count = max_elem/2;
+		f1 << element_count << " 0\n";
+		f2 << max_elem - element_count << " 0\n";
+		for(int i=0;i<element_count;i++){
 			f1 << valarr[i] << " " << keyarr[i] << " ";
 		}
-		f1 << valarr[temp_cnt];
-		for(int i=temp_cnt + 1;i <= max_elem;i++){
+		f1 << valarr[element_count];
+		for(int i=element_count + 1;i <= max_elem;i++){
 			f2 << valarr[i] << " " << keyarr[i] << " ";
 		}
 		f2 << valarr[max_elem+1];
 	}
 	f1.close();
 	f2.close();
-	return keyarr[temp_cnt];
+	return keyarr[element_count];
 }
 
 float insert(float key, string val, string filename){

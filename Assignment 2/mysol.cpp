@@ -105,9 +105,9 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 		}
 		myfile2 <<" "<< allkeys_value[max_keys+1]<<" ";
 	}
-		cout<<"\nhi\n";
 	myfile1.close();
 	myfile2.close();
+
 
 	return allkeys[element_count];
 }
@@ -175,6 +175,7 @@ float insert_key(float key, string key_value, string filename)
         				cout<<"allkeys["<<k<<"] == "<<allkeys[k]<<"....allkeys_value["<<k<<"]=="<<allkeys_value[k]<<endl;
         			}
         			float x= split(filename, allkeys, allkeys_value, isleaf);
+        			cout<<"\nhi\n";
         			return x;
         		}
         		else
