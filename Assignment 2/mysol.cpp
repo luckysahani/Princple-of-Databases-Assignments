@@ -341,7 +341,7 @@ void input_init(string filename)
 				count_total++;
 				ofstream myfile3 (temp_child_3.c_str());
 				myfile3 << "1 0\n";
-				myfile3 << temp_child_1 << " "<< return_value << " "<< temp_child_2;
+				myfile3 << temp_child_1 << " "<< return_value << " "<< temp_child_2 << " ";
 				root=temp_child_3;
 			}
         }
