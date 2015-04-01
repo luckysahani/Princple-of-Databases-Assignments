@@ -185,6 +185,7 @@ float insert_key(float key, string key_value, string filename)
 				    file.close();
 				    return -1;
         		}
+        		cout<<"exited is leaf function \n\n"
 
 
 
@@ -266,6 +267,7 @@ float insert_key(float key, string key_value, string filename)
 				    file.close();
 				    return -1;
 				}
+				cout<<"exited non-leaf function \n\n"
 				// else
 				// {
 				// 	return -1;
