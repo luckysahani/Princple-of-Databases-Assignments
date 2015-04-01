@@ -80,11 +80,11 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 	{
 		myfile2 << " "<<max_keys + 1 - element_count<<" 1\n";
 		myfile1 << " "<<element_count<<" 1\n";
-		cout<<"\nhi\n";
 		for (int i = 0; i < element_count; ++i)
 		{
 			myfile1 <<" "<< allkeys[i] << " " << allkeys_value[i]<<" ";
 		}
+		cout<<"\nhi\n";
 		for (int i = element_count; i <= max_keys; ++i)
 		{
 			myfile2 <<" "<< allkeys[i] << " " << allkeys_value[i]<<" ";
