@@ -176,7 +176,7 @@ float insert_key(float key, string key_value, string filename)
 				    	file <<" "<< number_of_elements + 1 << " 1\n";
 				    	for (int i = 0; i < number_of_elements+1; ++i)
 				    	{
-				    		file <<" " allkeys[i]<<" "<<allkeys_value[i]<<" ";
+				    		file <<" "<< allkeys[i]<<" "<<allkeys_value[i]<<" ";
 				    	}
 				    }
 				    file.close();
