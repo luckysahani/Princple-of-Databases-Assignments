@@ -1,7 +1,12 @@
 all:
 	git add -A
-	git commit -m "working on assignment 2" 
-	g++ mysol.cpp -o mysol
-	./mysol
+	git commit -m "Phase 2:working on assignment 2" 
+	cp assgn2_bplus_data.txt bin/assgn2_bplus_data.txt
+	cp a.txt bin/a.txt
+	cp bplustree.config bin/bplustree.config
+	cp mysol.cpp bin/mysol.cpp
+	cp querysample.txt bin/querysample.txt
+	g++ bin/mysol.cpp -o bin/mysol
+	./bin/mysol
 clean:
-	rm -rf mysol
+	rm -rf bin/
