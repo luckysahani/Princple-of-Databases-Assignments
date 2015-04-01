@@ -1,2 +1,2 @@
  6 1
- 0.539061 tpprau  0.420012 dybvb  0.539673 nkensf  0 dybvb  405.095   0 dybvb 
+ 0.539061 tpprau  0.420012 dybvb  0.539673 nkensf  0 dybvb  40.6979   0 dybvb 

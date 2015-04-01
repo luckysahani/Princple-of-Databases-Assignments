@@ -347,6 +347,7 @@ void input_init(string filename)
 				myfile3 << temp_child_1 << " "<< return_value << " "<< temp_child_2 << " ";
 				root=temp_child_3;
 			}
+			cout<<endl;
         }
         myfile.close();
     }
