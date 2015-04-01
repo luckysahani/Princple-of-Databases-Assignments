@@ -239,7 +239,6 @@ float insert_key(float key, string key_value, string filename)
 					myfile>> file_array[j];
 					cout << "calling insert with key ,key_value and file_array in is leaf \t"<<key<<key_value<<file_array[j]<<endl;
 					float return_value = insert_key(key, key_value, file_array[j]);
-					cout<<"\nhi\n";
 					if(return_value == -1)
 					{
 						myfile.close();
@@ -247,6 +246,7 @@ float insert_key(float key, string key_value, string filename)
 					}
 					else
 					{
+						cout<<"\nhi\n";
 						file_array[j+1]= temp_child_2;
 						file_array[j] = temp_child_1;
 						allkeys[j] = return_value;
