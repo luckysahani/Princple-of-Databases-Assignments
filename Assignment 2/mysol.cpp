@@ -246,8 +246,8 @@ float insert_key(float key, string key_value, string filename)
 					}
 					else
 					{
+						cout<<"\nhi\nj=="<<j<<endl;
 						file_array[j+1]= temp_child_2;
-						cout<<"\nhi\n";
 						file_array[j] = temp_child_1;
 						allkeys[j] = return_value;
 						myfile.close();
