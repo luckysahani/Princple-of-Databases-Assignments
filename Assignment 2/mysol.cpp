@@ -205,6 +205,7 @@ float insert_key(float key, string key_value, string filename)
         		}
 				if(i!= number_of_elements)
 				{
+					cout << "i == number of elemests ....calling insert with key ,key_value and file_array"<<key<<key_value<<file_array[j]<<endl;
 					float return_value= insert_key(key, key_value, file_array[j]);
 					if(return_value != -1)
 					{
