@@ -36,9 +36,9 @@ void set_maxkey_value(string filename)
     // }
     // else 
     // {  
-    //     cout << "Unable to open file "<<filename<<endl; 
+    //     //cout << "Unable to open file "<<filename<<endl; 
     // }
-    cout<<"Setting the maxkeys to "<<max_keys<<endl;
+    //cout<<"Setting the maxkeys to "<<max_keys<<endl;
 }	
 
 void intialize_root()
@@ -58,14 +58,14 @@ void intialize_root()
     // }
     // else 
     // {  
-    //     cout << "Unable to open file "<<filename<<endl; 
+    //     //cout << "Unable to open file "<<filename<<endl; 
     // }
 }
 
 
 float split(string filename, float* allkeys, string allkeys_value[], bool isleaf)
 {
-	cout<<"Split : filename: "<<filename<<"....isleaf:"<<isleaf<<endl;
+	//cout<<"Split : filename: "<<filename<<"....isleaf:"<<isleaf<<endl;
 	string temp;
 	char Result[50];
 	sprintf ( Result, "%d", count_total );
@@ -75,7 +75,7 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 	ofstream myfile1 (temp_child_1.c_str());
 	ofstream myfile2 (temp_child_2.c_str());
 	int element_count= (max_keys+1)/2;
-	cout<<"Tempo file: "<<temp_child_1<<temp_child_2<<endl;
+	//cout<<"Tempo file: "<<temp_child_1<<temp_child_2<<endl;
 	if(isleaf)
 	{
 		myfile2 << " "<<max_keys + 1 - element_count<<" 1\n";
@@ -114,7 +114,7 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 
 float insert_key(float key, string key_value, string filename)
 {
-	cout<<"Insertion : Key: "<<key<<"\tValue: "<<key_value<<"\tFilename: "<<filename<<endl;
+	//cout<<"Insertion : Key: "<<key<<"\tValue: "<<key_value<<"\tFilename: "<<filename<<endl;
 	int number_of_elements;
 	bool isleaf;
 	float t_key;
@@ -129,8 +129,8 @@ float insert_key(float key, string key_value, string filename)
     		// string allkeys_value[number_of_elements+1];
         	if(isleaf)
         	{
-        		// cout<<"entered isleaf";
-        		cout<<"Isleaf function\n";
+        		// //cout<<"entered isleaf";
+        		//cout<<"Isleaf function\n";
         		float allkeys[number_of_elements+1];
     			string allkeys_value[number_of_elements+1];
         		bool check = false;
@@ -169,13 +169,13 @@ float insert_key(float key, string key_value, string filename)
         		
         		if(number_of_elements == max_keys)
         		{
-        			cout<<"It is a leaf , calling split from insert\n";
+        			//cout<<"It is a leaf , calling split from insert\n";
         			for (int k = 0; k < number_of_elements; ++k)
         			{
-        				cout<<"allkeys["<<k<<"] == "<<allkeys[k]<<"....allkeys_value["<<k<<"]=="<<allkeys_value[k]<<endl;
+        				//cout<<"allkeys["<<k<<"] == "<<allkeys[k]<<"....allkeys_value["<<k<<"]=="<<allkeys_value[k]<<endl;
         			}
         			float x= split(filename, allkeys, allkeys_value, isleaf);
-        			// cout<<"\nhi\n";
+        			// //cout<<"\nhi\n";
         			return x;
         		}
         		else
@@ -192,14 +192,14 @@ float insert_key(float key, string key_value, string filename)
 				    file.close();
 				    return -1;
         		}
-        		cout<<"exited is leaf function \n\n";
+        		//cout<<"exited is leaf function \n\n";
 
 
 
         	}
         	else
         	{
-        		cout<<"Not a leaf \n";
+        		//cout<<"Not a leaf \n";
         		float allkeys[max_keys+4];
     			string file_array[max_keys+4];
     			int i,j=0;
@@ -213,7 +213,7 @@ float insert_key(float key, string key_value, string filename)
         		}
 				if(i!= number_of_elements)
 				{
-					cout << "i == number of elemests ....calling insert with key ,key_value and file_array"<<key<<key_value<<file_array[j]<<endl;
+					//cout << "i == number of elemests ....calling insert with key ,key_value and file_array"<<key<<key_value<<file_array[j]<<endl;
 					float return_value= insert_key(key, key_value, file_array[j]);
 					if(return_value != -1)
 					{
@@ -237,7 +237,7 @@ float insert_key(float key, string key_value, string filename)
 				else
 				{
 					myfile>> file_array[j];
-					cout << "calling insert with key ,key_value and file_array in is leaf \t"<<key<<key_value<<file_array[j]<<endl;
+					////cout << "calling insert with key ,key_value and file_array in is leaf \t"<<key<<key_value<<file_array[j]<<endl;
 					float return_value = insert_key(key, key_value, file_array[j]);
 					if(return_value == -1)
 					{
@@ -246,25 +246,25 @@ float insert_key(float key, string key_value, string filename)
 					}
 					else
 					{
-						cout<<"\nhi\nj=="<<j<<temp_child_2<<endl;
+						////cout<<"\nhi\nj=="<<j<<temp_child_2<<endl;
 						file_array[j+1]= temp_child_2;
-						cout<<"\nhi\n";
+						////cout<<"\nhi\n";
 						file_array[j] = temp_child_1;
 						allkeys[j] = return_value;
 						myfile.close();
-						// cout<<"\nhi\n";
+						// ////cout<<"\nhi\n";
 					}
 				}
 				if(number_of_elements == max_keys)
 				{
-					cout<<"Not a leaf , calling split from insert\n";
+					////cout<<"Not a leaf , calling split from insert\n";
 					float x= split(filename,allkeys,file_array,isleaf);
 					return x;
 				}
 				else
 				{
 					ofstream file (filename.c_str());
-					cout<<"check";
+					////cout<<"check";
 				    // if (file.is_open())
 				    // {
 				    	int i;
@@ -278,7 +278,7 @@ float insert_key(float key, string key_value, string filename)
 				    file.close();
 				    return -1;
 				}
-				cout<<"exited non-leaf function \n\n";
+				////cout<<"exited non-leaf function \n\n";
 				// else
 				// {
 				// 	return -1;
@@ -289,13 +289,13 @@ float insert_key(float key, string key_value, string filename)
     // }
     // else 
     // {  
-    //     cout << "Unable to open file "<<filename<<endl; 
+    //     //cout << "Unable to open file "<<filename<<endl; 
     // }
 }
 
 void range_query(float start, float end, string filename)
 {
-	cout<<"Range Query : Start ->"<<start << "\t End: "<<end<<endl;
+	//cout<<"Range Query : Start ->"<<start << "\t End: "<<end<<endl;
 
 
 }
@@ -334,9 +334,9 @@ void queries_init(string filename)
     // }
     // else 
     // {  
-    //     cout << "Unable to open file "<<filename<<endl; 
+    //     //cout << "Unable to open file "<<filename<<endl; 
     // }
-	cout<<"All the queries have been processed\n";
+	//cout<<"All the queries have been processed\n";
 }
 
 void input_init(string filename)
@@ -350,9 +350,9 @@ void input_init(string filename)
         {
 			myfile >> key;
 			myfile >> key_value;
-			// cout<<"\n\n\nkey and value is"<< key << key_value << endl;
+			// //cout<<"\n\n\nkey and value is"<< key << key_value << endl;
 			float return_value=insert_key(key,key_value,root); 
-			// cout<<"\n\n\nkey and value is"<< key << key_value<<" ........returned with "<<return_value << endl;
+			// //cout<<"\n\n\nkey and value is"<< key << key_value<<" ........returned with "<<return_value << endl;
 			if(return_value != -1)
 			{
 				string temp_child_3;
@@ -365,15 +365,15 @@ void input_init(string filename)
 				myfile3 << temp_child_1 << " "<< return_value << " "<< temp_child_2 << " ";
 				root=temp_child_3;
 			}
-			cout<<endl;
+			//cout<<endl;
         }
         myfile.close();
     // }
     // else 
     // {  
-    //     cout << "Unable to open file "<<filename<<endl; 
+    //     //cout << "Unable to open file "<<filename<<endl; 
     // }
-	cout<<"Points from the file "<<filename<< " has been inserted \n";
+	//cout<<"Points from the file "<<filename<< " has been inserted \n";
 }
 
 int main()
@@ -381,13 +381,13 @@ int main()
 	string input="assgn2_bplus_data.txt",queries="querysample.txt";
 	string file_maxkeys="bplustree.config";
 	string sample_input="a.txt";
-	cout<<"Processing.........\n";
+	//cout<<"Processing.........\n";
 	intialize_root();
 	set_maxkey_value(file_maxkeys);
-	cout<<"Inserting the points from assgn2_bplus_data.txt\n";
+	//cout<<"Inserting the points from assgn2_bplus_data.txt\n";
 	// input_init(input);
 	input_init(sample_input);
-	// cout<<"Processing the queries\n";
+	// //cout<<"Processing the queries\n";
 	// queries_init(queries);
 	return 0;
 }
@@ -395,5 +395,5 @@ int main()
 // void stream_reader(istream& stream)
 // {
 //     getline (stream,line);
-//     cout << line << endl;
+//     //cout << line << endl;
 // }
