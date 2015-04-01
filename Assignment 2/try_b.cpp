@@ -6,7 +6,7 @@
 #include <string.h>
 using namespace std;
 
-int file_cnt = 1, max_elem  = 32;
+int file_cnt = 1, max_elem  = 5;
 string root = "node_0.txt";
 string fileinit = "node_", fileformat = ".txt", tempfile1= "", tempfile2 = "";
 
@@ -161,16 +161,8 @@ bool input(string filename){
 	ifstream fin ;
 	fin.open(filename.c_str(), ifstream::in);
 	string val;
-	for(int i=0;i<3000;i++){
-		fin >> type;
-		if(type == 2){
-			fin >> key;
-			fin >> key;
-		}
-		else if(type == 1) {
-			fin >> key;
-		}
-		else {
+	for(int i=0;i<30;i++){
+		
 			
 			fin >> key;
 			fin >> val;
@@ -188,12 +180,13 @@ bool input(string filename){
 				root = tempfile3;
 			}
 
-		}
+		
 	}
 }
 int main(){
 	string s;
 	cin >> s;
 	input(s);
+	cout << root;
 	return 0;
 }

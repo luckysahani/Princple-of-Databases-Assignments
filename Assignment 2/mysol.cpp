@@ -26,18 +26,18 @@ string temp_child_1,temp_child_2;
 void set_maxkey_value(string filename)
 {
     ifstream myfile (filename.c_str());
-    if (myfile.is_open())
-    {
+    // if (myfile.is_open())
+    // {
         // while (myfile.good())
         // {
         	myfile >> max_keys;
         // }
         myfile.close();
-    }
-    else 
-    {  
-        cout << "Unable to open file "<<filename<<endl; 
-    }
+    // }
+    // else 
+    // {  
+    //     cout << "Unable to open file "<<filename<<endl; 
+    // }
     cout<<"Setting the maxkeys to "<<max_keys<<endl;
 }	
 
@@ -48,18 +48,18 @@ void intialize_root()
 	int number_of_elements=0;
 	count_total=1;
 	bool isleaf = true;
-    if (myfile.is_open())
-    {
+    // if (myfile.is_open())
+    // {
         myfile << number_of_elements;
         myfile << " ";
         myfile << isleaf;
         myfile << "\n";
         myfile.close();
-    }
-    else 
-    {  
-        cout << "Unable to open file "<<filename<<endl; 
-    }
+    // }
+    // else 
+    // {  
+    //     cout << "Unable to open file "<<filename<<endl; 
+    // }
 }
 
 
@@ -118,12 +118,12 @@ float insert_key(float key, string key_value, string filename)
 	float t_key;
 	string t_key_value,t_file; 
 	ifstream myfile (filename.c_str());
-    if (myfile.is_open())
-    {
+    // if (myfile.is_open())
+    // {
         // while (myfile.good())
         // {
-        	myfile >> number_of_elements >> isleaf;
-    		// float allkeys[number_of_elements+1];
+        	myfile >> number_of_elements >> isleaf
+;    		// float allkeys[number_of_elements+1];
     		// string allkeys_value[number_of_elements+1];
         	if(isleaf)
         	{
@@ -255,16 +255,16 @@ float insert_key(float key, string key_value, string filename)
 				{
 					ofstream file (filename.c_str());
 					cout<<"check";
-				    if (file.is_open())
-				    {
+				    // if (file.is_open())
+				    // {
 				    	int i;
-				    	file <<" "<< number_of_elements + 1 << " 0\n";
+				    	file << number_of_elements + 1 << " 0\n";
 				    	for (i = 0; i < number_of_elements+1; ++i)
 				    	{
-				    		file <<" "<< file_array[i]<<" "<<allkeys[i]<<" ";
+				    		file << file_array[i]<<" "<<allkeys[i]<<" ";
 				    	}
 				    	file<<file_array[number_of_elements+1]<<" ";
-				    }
+				    // }
 				    file.close();
 				    return -1;
 				}
@@ -276,11 +276,11 @@ float insert_key(float key, string key_value, string filename)
         	}
         // }
         // myfile.close();
-    }
-    else 
-    {  
-        cout << "Unable to open file "<<filename<<endl; 
-    }
+    // }
+    // else 
+    // {  
+    //     cout << "Unable to open file "<<filename<<endl; 
+    // }
 }
 
 void range_query(float start, float end, string filename)
@@ -296,8 +296,8 @@ void queries_init(string filename)
 	float start, end, key;
 	string key_value;
 	ifstream myfile (filename.c_str());
-    if (myfile.is_open())
-    {
+    // if (myfile.is_open())
+    // {
         while (myfile.good())
         {
 			myfile >> type_of_query;
@@ -321,11 +321,11 @@ void queries_init(string filename)
 			     	
         }
         myfile.close();
-    }
-    else 
-    {  
-        cout << "Unable to open file "<<filename<<endl; 
-    }
+    // }
+    // else 
+    // {  
+    //     cout << "Unable to open file "<<filename<<endl; 
+    // }
 	cout<<"All the queries have been processed\n";
 }
 
@@ -334,8 +334,8 @@ void input_init(string filename)
 	float key;
 	string key_value;
 	ifstream myfile (filename.c_str());
-    if (myfile.is_open())
-    {
+    // if (myfile.is_open())
+    // {
         while (myfile.good())
         {
 			myfile >> key;
@@ -358,11 +358,11 @@ void input_init(string filename)
 			cout<<endl;
         }
         myfile.close();
-    }
-    else 
-    {  
-        cout << "Unable to open file "<<filename<<endl; 
-    }
+    // }
+    // else 
+    // {  
+    //     cout << "Unable to open file "<<filename<<endl; 
+    // }
 	cout<<"Points from the file "<<filename<< " has been inserted \n";
 }
 
