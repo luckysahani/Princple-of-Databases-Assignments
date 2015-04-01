@@ -51,7 +51,7 @@ void intialize_root()
     if (myfile.is_open())
     {
         myfile << number_of_elements;
-        myfile << "\t";
+        myfile << " ";
         myfile << isleaf;
         myfile << "\n";
         myfile.close();
@@ -77,33 +77,33 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 	int element_count= (max_keys+1)/2;
 	if(isleaf)
 	{
-		myfile2 << max_keys + 1 - element_count<<" 1\n";
-		myfile1 << element_count<<" 1\n";
+		myfile2 << " "<<max_keys + 1 - element_count<<" 1\n";
+		myfile1 << " "<<element_count<<" 1\n";
 		for (int i = 0; i < element_count; ++i)
 		{
-			myfile1 << allkeys[i] << " " << allkeys_value[i]<<endl;
+			myfile1 <<" "<< allkeys[i] << " " << allkeys_value[i]<<endl;
 		}
 		for (int i = element_count; i < max_keys; ++i)
 		{
-			myfile2 << allkeys[i] << " " << allkeys_value[i]<<endl;
+			myfile2 <<" "<< allkeys[i] << " " << allkeys_value[i]<<endl;
 		}
 	}
 	else
 	{
 		element_count= max_keys/2;
-		myfile1 << element_count << " 0\n";
-		myfile2 << max_keys + 1 - element_count << " 0\n";
+		myfile1 << " "<<element_count << " 0\n";
+		myfile2 <<" "<< max_keys + 1 - element_count << " 0\n";
 		for (int i = 0; i < element_count; ++i)
 		{
-			myfile1 << allkeys_value[i]<< " "<< allkeys[i]<<" ";
+			myfile1 << " "<< allkeys_value[i]<< " "<< allkeys[i]<<" ";
 		}
-		myfile1 << allkeys_value[element_count]<<" ";
+		myfile1 <<" "<< allkeys_value[element_count]<<" ";
 		myfile1.close();
 		for (int i = element_count+1; i < max_keys+1; ++i)
 		{
-			myfile2 << allkeys_value[i]<< " "<< allkeys[i]<<" ";
+			myfile2 <<" "<< allkeys_value[i]<< " "<< allkeys[i]<<" ";
 		}
-		myfile2 << allkeys_value[max_keys+1]<<" ";
+		myfile2 <<" "<< allkeys_value[max_keys+1]<<" ";
 		myfile2.close();
 	}
 
@@ -173,10 +173,10 @@ float insert_key(float key, string key_value, string filename)
         			ofstream file (filename.c_str());
 				    if (file.is_open())
 				    {
-				    	file << number_of_elements + 1 << " 1\n";
+				    	file <<" "<< number_of_elements + 1 << " 1\n";
 				    	for (int i = 0; i < number_of_elements+1; ++i)
 				    	{
-				    		file << allkeys[i]<<" "<<allkeys_value[i]<<endl;
+				    		file <<" " allkeys[i]<<" "<<allkeys_value[i]<<" ";
 				    	}
 				    }
 				    file.close();
@@ -249,12 +249,12 @@ float insert_key(float key, string key_value, string filename)
 				    if (file.is_open())
 				    {
 				    	int i;
-				    	file << number_of_elements + 1 << " 0\n";
+				    	file <<" "<< number_of_elements + 1 << " 0\n";
 				    	for (i = 0; i < number_of_elements+1; ++i)
 				    	{
-				    		file << file_array[i]<<" "<<allkeys[i]<<endl;
+				    		file <<" "<< file_array[i]<<" "<<allkeys[i]<<" ";
 				    	}
-				    	file<<file_array[number_of_elements+1];
+				    	file<<file_array[number_of_elements+1]<<" ";
 				    }
 				    file.close();
 				    return -1;
