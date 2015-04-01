@@ -246,7 +246,7 @@ float insert_key(float key, string key_value, string filename)
 					}
 					else
 					{
-						cout<<"\nhi\nj=="<<j<<temp_child_2<<endl;
+						cout<<"\nhi\nj=="<<j<<temp_child_2<<endl<<file_array[j+1];
 						file_array[j+1]= temp_child_2;
 						file_array[j] = temp_child_1;
 						allkeys[j] = return_value;
