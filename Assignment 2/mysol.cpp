@@ -127,7 +127,7 @@ float insert_key(float key, string key_value, string filename)
     		// string allkeys_value[number_of_elements+1];
         	if(isleaf)
         	{
-        		cout<<"entered isleaf"
+        		cout<<"entered isleaf";
         		float allkeys[number_of_elements+1];
     			string allkeys_value[number_of_elements+1];
         		bool check = false;
