@@ -1,2 +1,0 @@
-2 0
-node_0.txt 0.268076 node_4.txt 0.420012 node_1.txt
