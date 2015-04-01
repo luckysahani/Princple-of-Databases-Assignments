@@ -77,8 +77,8 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 	int element_count= (max_keys+1)/2;
 	if(isleaf)
 	{
-		myfile1 << element_count<<" 1\n";
 		myfile2 << max_keys + 1 - element_count<<" 1\n";
+		myfile1 << element_count<<" 1\n";
 		for (int i = 0; i < element_count; ++i)
 		{
 			myfile1 << allkeys[i] << " " << allkeys_value[i]<<endl;
@@ -98,13 +98,15 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 			myfile1 << allkeys_value[i]<< " "<< allkeys[i]<<" ";
 		}
 		myfile1 << allkeys_value[element_count]<<" ";
-
+		myfile1.close();
 		for (int i = element_count+1; i < max_keys+1; ++i)
 		{
 			myfile2 << allkeys_value[i]<< " "<< allkeys[i]<<" ";
 		}
 		myfile2 << allkeys_value[max_keys+1]<<" ";
+		myfile2.close();
 	}
+
 	return allkeys[element_count];
 }
 
@@ -153,7 +155,7 @@ float insert_key(float key, string key_value, string filename)
         		{
         			allkeys[number_of_elements]=key;
 					allkeys_value[number_of_elements]=key_value;
-					check = true;
+					// check = true;
         		}
         		else
         		{
@@ -163,7 +165,8 @@ float insert_key(float key, string key_value, string filename)
         		cout<<"Isleaf function\n";
         		if(number_of_elements == max_keys)
         		{
-        			return split(filename, allkeys, allkeys_value, isleaf);
+        			float x= split(filename, allkeys, allkeys_value, isleaf);
+        			return x;
         		}
         		else
         		{
@@ -196,23 +199,44 @@ float insert_key(float key, string key_value, string filename)
         				break;
         			}
         		}
-				float return_value= insert_key(key, key_value, file_array[j]);
-				if(return_value != -1)
+				if(i!= number_of_elements)
 				{
-					allkeys[j+1]= allkeys[j];
-					allkeys[j]= return_value;
-					file_array[j+1]=temp_child_2;
-					file_array[j]=temp_child_1;
-					for (j=j+2,i++; i < number_of_elements; ++i,++j)
+					float return_value= insert_key(key, key_value, file_array[j]);
+					if(return_value != -1)
 					{
-						myfile >> file_array[j] >> allkeys[j];
+						allkeys[j+1]= allkeys[j];
+						allkeys[j]= return_value;
+						file_array[j+1]=temp_child_2;
+						file_array[j]=temp_child_1;
+						for (j=j+2,i++; i < number_of_elements; ++i,++j)
+						{
+							myfile >> file_array[j] >> allkeys[j];
+						}
+						myfile >> file_array[j];
+						myfile.close();
 					}
-					myfile >> file_array[j];
-					myfile.close();
+					else
+					{
+						myfile.close();
+						return -1;
+					}
 				}
 				else
 				{
-					return -1;
+					myfile>> allkeys_value[j];
+					float return_value = insert_key(key, key_value, allkeys_value[j]);
+					if(return_value == -1)
+					{
+						myfile.close();
+						return -1;
+					}
+					else
+					{
+						allkeys_value[j+1]= temp_child_2;
+						allkeys_value[j] = temp_child_1;
+						allkeys[j] = return_value;
+						myfile.close();
+					}
 				}
 				if(number_of_elements == max_keys)
 				{
@@ -230,7 +254,7 @@ float insert_key(float key, string key_value, string filename)
 				    	{
 				    		file << file_array[i]<<" "<<allkeys[i]<<endl;
 				    	}
-				    	file<<file_array[i];
+				    	file<<file_array[number_of_elements+1];
 				    }
 				    file.close();
 				    return -1;
@@ -317,6 +341,7 @@ void input_init(string filename)
 				ofstream myfile3 (temp_child_3.c_str());
 				myfile3 << "1 0\n";
 				myfile3 << temp_child_1 << " "<< return_value << " "<< temp_child_2;
+				root=temp_child_3;
 			}
         }
         myfile.close();
