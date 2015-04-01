@@ -1,2 +1,5 @@
- 6 1
- 0.420012 dybvb  0.102084 ooq  0.539061 tpprau  0 tpprau  0 tpprau  0.539673 nkensf 
+ 4 1
+ 0.420012 dybvb
+ 0.102084 ooq
+ 0.539061 tpprau
+ 0.794226 xgelshx
