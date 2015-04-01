@@ -291,8 +291,8 @@ void queries_init(string filename)
 	ifstream myfile (filename.c_str());
     if (myfile.is_open())
     {
-        // while (myfile.good())
-        // {
+        while (myfile.good())
+        {
 			myfile >> type_of_query;
 			if(type_of_query == 0)
 			{
@@ -312,7 +312,7 @@ void queries_init(string filename)
 				//IGNORE ANY QUERY OTHER THAN ABOVE 2
 			}
 			     	
-        // }
+        }
         myfile.close();
     }
     else 
