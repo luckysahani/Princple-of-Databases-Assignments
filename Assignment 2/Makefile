@@ -1,6 +1,7 @@
 all:
 	git add -A
 	git commit -m "Phase 2:working on assignment 2" 
+	mkdir bin
 	cp assgn2_bplus_data.txt bin/assgn2_bplus_data.txt
 	cp a.txt bin/a.txt
 	cp bplustree.config bin/bplustree.config
