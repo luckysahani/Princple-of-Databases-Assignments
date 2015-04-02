@@ -350,10 +350,8 @@ void input_init(string filename)
         {
 			myfile >> key;
 			myfile >> key_value;
-			//cout<<"\n\n\nkey and value is"<< key << key_value << endl;
-			float return_value=insert_key(key,key_value,root); 
-			//cout<<"\n\n\nkey and value is"<< key << key_value<<" ........returned with "<<return_value << endl;
-			if(return_value != -1)
+			// float return_value=insert_key(key,key_value,root); 
+			if(insert_key(key,key_value,root) != -1)
 			{
 				string temp_child_3;
 				char Result[50];
@@ -361,11 +359,9 @@ void input_init(string filename)
 				temp_child_3=Result+format;
 				count_total++;
 				ofstream myfile3 (temp_child_3.c_str());
-				myfile3 << "1 0\n";
-				myfile3 << temp_child_1 << " "<< return_value << " "<< temp_child_2 << " ";
+				myfile3 << "1 0\n"<<temp_child_1 << " "<< return_value << " "<< temp_child_2 << " ";
 				root=temp_child_3;
 			}
-			//cout<<endl;
         }
         myfile.close();
     }

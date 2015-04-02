@@ -26,18 +26,18 @@ string temp_child_1,temp_child_2;
 void set_maxkey_value(string filename)
 {
     ifstream myfile (filename.c_str());
-    // if (myfile.is_open())
-    // {
+    if (myfile.is_open())
+    {
         // while (myfile.good())
         // {
         	myfile >> max_keys;
         // }
         myfile.close();
-    // }
-    // else 
-    // {  
-    //     //cout << "Unable to open file "<<filename<<endl; 
-    // }
+    }
+    else 
+    {  
+        //cout << "Unable to open file "<<filename<<endl; 
+    }
     //cout<<"Setting the maxkeys to "<<max_keys<<endl;
 }	
 
@@ -48,18 +48,18 @@ void intialize_root()
 	int number_of_elements=0;
 	count_total=1;
 	bool isleaf = true;
-    // if (myfile.is_open())
-    // {
+    if (myfile.is_open())
+    {
         myfile << number_of_elements;
         myfile << " ";
         myfile << isleaf;
         myfile << "\n";
         myfile.close();
-    // }
-    // else 
-    // {  
-    //     //cout << "Unable to open file "<<filename<<endl; 
-    // }
+    }
+    else 
+    {  
+        //cout << "Unable to open file "<<filename<<endl; 
+    }
 }
 
 
@@ -120,8 +120,8 @@ float insert_key(float key, string key_value, string filename)
 	float t_key;
 	string t_key_value,t_file; 
 	ifstream myfile (filename.c_str());
-    // if (myfile.is_open())
-    // {
+    if (myfile.is_open())
+    {
         // while (myfile.good())
         // {
         	myfile >> number_of_elements >> isleaf
@@ -286,11 +286,11 @@ float insert_key(float key, string key_value, string filename)
         	}
         // }
         // myfile.close();
-    // }
-    // else 
-    // {  
-    //     //cout << "Unable to open file "<<filename<<endl; 
-    // }
+    }
+    else 
+    {  
+        cout << "Unable to open file "<<filename<<endl; 
+    }
 }
 
 void range_query(float start, float end, string filename)
@@ -306,8 +306,8 @@ void queries_init(string filename)
 	float start, end, key;
 	string key_value;
 	ifstream myfile (filename.c_str());
-    // if (myfile.is_open())
-    // {
+    if (myfile.is_open())
+    {
         while (myfile.good())
         {
 			myfile >> type_of_query;
@@ -331,11 +331,11 @@ void queries_init(string filename)
 			     	
         }
         myfile.close();
-    // }
-    // else 
-    // {  
-    //     //cout << "Unable to open file "<<filename<<endl; 
-    // }
+    }
+    else 
+    {  
+        cout << "Unable to open file "<<filename<<endl; 
+    }
 	//cout<<"All the queries have been processed\n";
 }
 
@@ -344,15 +344,15 @@ void input_init(string filename)
 	float key;
 	string key_value;
 	ifstream myfile (filename.c_str());
-    // if (myfile.is_open())
-    // {
+    if (myfile.is_open())
+    {
         while (myfile.good())
         {
 			myfile >> key;
 			myfile >> key_value;
-			// //cout<<"\n\n\nkey and value is"<< key << key_value << endl;
+			//cout<<"\n\n\nkey and value is"<< key << key_value << endl;
 			float return_value=insert_key(key,key_value,root); 
-			// //cout<<"\n\n\nkey and value is"<< key << key_value<<" ........returned with "<<return_value << endl;
+			//cout<<"\n\n\nkey and value is"<< key << key_value<<" ........returned with "<<return_value << endl;
 			if(return_value != -1)
 			{
 				string temp_child_3;
@@ -368,11 +368,11 @@ void input_init(string filename)
 			//cout<<endl;
         }
         myfile.close();
-    // }
-    // else 
-    // {  
-    //     //cout << "Unable to open file "<<filename<<endl; 
-    // }
+    }
+    else 
+    {  
+        cout << "Unable to open file "<<filename<<endl; 
+    }
 	//cout<<"Points from the file "<<filename<< " has been inserted \n";
 }
 
@@ -384,16 +384,10 @@ int main()
 	cout<<"Processing.........\n";
 	intialize_root();
 	set_maxkey_value(file_maxkeys);
-	//cout<<"Inserting the points from assgn2_bplus_data.txt\n";
-	// input_init(input);
-	input_init(sample_input);
-	// //cout<<"Processing the queries\n";
+	cout<<"Inserting the points from assgn2_bplus_data.txt\n";
+	input_init(input);
+	// input_init(sample_input);
+	// cout<<"Processing the queries\n";
 	// queries_init(queries);
 	return 0;
 }
-
-// void stream_reader(istream& stream)
-// {
-//     getline (stream,line);
-//     //cout << line << endl;
-// }
