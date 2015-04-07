@@ -21,6 +21,7 @@ int count_total=1;
 string root="0.txt";
 string format=".txt";
 string temp_child_1,temp_child_2;
+string query_output="";
 // string sibling;
 
 void set_maxkey_value(string filename)
@@ -311,7 +312,7 @@ void range_query(float start, float end, string filename)
 	int number_of_elements;
 	ifstream myfile (filename.c_str());
 	string file,key_value,sibling;
-
+	char Result[50];
 	float key;
 	myfile >> number_of_elements >> isleaf;
 	if(start > 1 || end < 0)
@@ -328,7 +329,11 @@ void range_query(float start, float end, string filename)
 			// cout<<"In Leaf: Start ->"<<start << "\t End: "<<end<<"\t Key :"<<key<<endl;
 			if((key >= start)&&(key <=end))
 			{
-				cout<<key<<" "<<key_value<<endl;
+				// cout<<key<<" "<<key_value<<endl;
+				
+				sprintf ( Result, "%f", key );
+				query_output+= Result;
+				query_output += "\t" + key_value + "\n";
 			}
 			if(end < key )
 			{
@@ -376,7 +381,7 @@ void find_key(float key, string filename)
 void queries_init(string filename)
 {
 	int type_of_query;
-	float start, end, key;
+	float start, end, key,mid,dev;
 	string key_value;
 	ifstream myfile (filename.c_str());
     if (myfile.is_open())
@@ -393,16 +398,26 @@ void queries_init(string filename)
 			}
 			else if(type_of_query == 2)
 			{
-				myfile >> end;
-				myfile >> start;
+				query_output="";
+				myfile >> mid;
+				myfile >> dev;
+				start=mid-dev;
+				end=mid+dev;
 				cout<<"\nRange Query : Start ->"<<start << "\t End: "<<end<<endl;
 				range_query(start,end,root);
+
+
+				cout<<query_output<<endl;
 			}
 			else if (type_of_query == 1)
 			{
+				query_output="";
 				myfile >> key;
 				cout<<"\nFind Query : Key = "<<key<<endl;
 				find_key(key,root);
+
+
+				cout<<query_output<<endl;
 			}
 			else
 			{
@@ -465,10 +480,10 @@ int main()
 	intialize_root();
 	set_maxkey_value(file_maxkeys);
 	cout<<"Inserting the points from assgn2_bplus_data.txt\n";
-	// input_init(input);
-	input_init(sample_input);
+	input_init(input);
+	// input_init(sample_input);
 	cout<<"Processing the queries\n";
-	// queries_init(queries);
-	queries_init(sample_queries);
+	queries_init(queries);
+	// queries_init(sample_queries);
 	return 0;
 }
