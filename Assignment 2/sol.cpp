@@ -82,7 +82,7 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 		myfile2 << " "<<max_keys + 1 - element_count<<" 1 ";
 		myfile1 << " "<<element_count<<" 1 ";
 		myfile1<<temp_child_2<<"\n";
-		cout<<"Sibling is "<<sibling<<" and "<<temp_child_2<<"\n";
+		// cout<<"Sibling is "<<sibling<<" and "<<temp_child_2<<"\n";
 		myfile2<<sibling<<"\n";
 		for (int i = 0; i < element_count; ++i)
 		{
@@ -307,11 +307,72 @@ float insert_key(float key, string key_value, string filename)
 
 void range_query(float start, float end, string filename)
 {
-	//cout<<"Range Query : Start ->"<<start << "\t End: "<<end<<endl;
+	bool isleaf;
+	int number_of_elements;
+	ifstream myfile (filename.c_str());
+	string file,key_value,sibling;
 
+	float key;
+	myfile >> number_of_elements >> isleaf;
+	if(start > 1 || end < 0)
+	{
+		return;
+	}
+	// cout<<"Range Query : Start ->"<<start << "\t End: "<<end<<"\t Isleaf :"<<isleaf<<"\t filename : "<<filename<<endl;
+	if(isleaf)
+	{
+		myfile >> sibling;
+		for (int i = 0; i < number_of_elements; ++i)
+		{
+			myfile>> key >> key_value;
+			// cout<<"In Leaf: Start ->"<<start << "\t End: "<<end<<"\t Key :"<<key<<endl;
+			if((key >= start)&&(key <=end))
+			{
+				cout<<key<<" "<<key_value<<endl;
+			}
+			if(end < key )
+			{
+				return;
+			}
+			// myfile.close();
+			
+		}
+		range_query(key,end,sibling);
+	}
+	else
+	{
+		// myfile>> file >> key;
+		// if(start< key)
+		// {
+		// 	range_query(start,end,file);
+		// 	return;
+		// }
+		for (int i = 0; i < number_of_elements; ++i)
+		{
+			myfile>> file >> key;
+			// cout<<"In non-leaf: Start ->"<<start << "\t End: "<<end<<"\t Key :"<<key<<endl;
+			if(start < key)
+			{
+				range_query(start,end,file);
+				return;
+			}
+			if(end < key )
+			{
+				// cout<<"returned\n";
+				return;
+			}
+		}
+		myfile>>file;
+		myfile.close();
+		range_query(start,end,file);
+	} 
 
 }
-
+void find_key(float key, string filename)
+{
+	// cout<<"Find Query : Key = "<<key<<endl;
+	range_query(key,key,filename);
+}
 void queries_init(string filename)
 {
 	int type_of_query;
@@ -332,9 +393,16 @@ void queries_init(string filename)
 			}
 			else if(type_of_query == 2)
 			{
-				myfile >> start;
 				myfile >> end;
+				myfile >> start;
+				cout<<"\nRange Query : Start ->"<<start << "\t End: "<<end<<endl;
 				range_query(start,end,root);
+			}
+			else if (type_of_query == 1)
+			{
+				myfile >> key;
+				cout<<"\nFind Query : Key = "<<key<<endl;
+				find_key(key,root);
 			}
 			else
 			{
@@ -392,6 +460,7 @@ int main()
 	string input="assgn2_bplus_data.txt",queries="querysample.txt";
 	string file_maxkeys="bplustree.config";
 	string sample_input="a.txt";
+	string sample_queries="b.txt";
 	cout<<"Processing.........\n";
 	intialize_root();
 	set_maxkey_value(file_maxkeys);
@@ -400,5 +469,6 @@ int main()
 	input_init(sample_input);
 	cout<<"Processing the queries\n";
 	// queries_init(queries);
+	queries_init(sample_queries);
 	return 0;
 }
