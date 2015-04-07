@@ -15,23 +15,23 @@ Implementing a B+ Tree in C++
 #include <algorithm>
 
 using namespace std;
-// using std::to_string;
 
 int max_keys;
 int count_total=1;
 string root="0.txt";
 string format=".txt";
 string temp_child_1,temp_child_2;
+// string sibling;
 
 void set_maxkey_value(string filename)
 {
     ifstream myfile (filename.c_str());
     if (myfile.is_open())
     {
-        // while (myfile.good())
-        // {
+        while (myfile.good())
+        {
         	myfile >> max_keys;
-        // }
+        }
         myfile.close();
     }
     else 
@@ -53,7 +53,8 @@ void intialize_root()
         myfile << number_of_elements;
         myfile << " ";
         myfile << isleaf;
-        myfile << "\n";
+        myfile << " ";
+        myfile << "done" <<"\n";
         myfile.close();
     }
     else 
@@ -63,7 +64,7 @@ void intialize_root()
 }
 
 
-float split(string filename, float* allkeys, string allkeys_value[], bool isleaf)
+float split(string filename, float* allkeys, string allkeys_value[], bool isleaf,string sibling)
 {
 	//cout<<"Split : filename: "<<filename<<"....isleaf:"<<isleaf<<endl;
 	string temp;
@@ -78,8 +79,11 @@ float split(string filename, float* allkeys, string allkeys_value[], bool isleaf
 	//cout<<"Tempo file: "<<temp_child_1<<temp_child_2<<endl;
 	if(isleaf)
 	{
-		myfile2 << " "<<max_keys + 1 - element_count<<" 1\n";
-		myfile1 << " "<<element_count<<" 1\n";
+		myfile2 << " "<<max_keys + 1 - element_count<<" 1 ";
+		myfile1 << " "<<element_count<<" 1 ";
+		myfile1<<temp_child_2<<"\n";
+		cout<<"Sibling is "<<sibling<<" and "<<temp_child_2<<"\n";
+		myfile2<<sibling<<"\n";
 		for (int i = 0; i < element_count; ++i)
 		{
 			myfile1 <<" "<< allkeys[i] << " " << allkeys_value[i]<<" ";
@@ -119,13 +123,17 @@ float insert_key(float key, string key_value, string filename)
 	bool isleaf;
 	float t_key;
 	string t_key_value,t_file; 
+	string sibling;
 	ifstream myfile (filename.c_str());
     if (myfile.is_open())
     {
         // while (myfile.good())
         // {
-        	myfile >> number_of_elements >> isleaf
-;    		// float allkeys[number_of_elements+1];
+        	myfile >> number_of_elements >> isleaf;
+        	if(isleaf)
+			{
+        	myfile >> sibling;
+        	}        	// float allkeys[number_of_elements+1];
     		// string allkeys_value[number_of_elements+1];
         	if(isleaf)
         	{
@@ -133,6 +141,7 @@ float insert_key(float key, string key_value, string filename)
         		//cout<<"Isleaf function\n";
         		float allkeys[number_of_elements+1];
     			string allkeys_value[number_of_elements+1];
+    			
         		bool check = false;
         		for (int i = 0; i < number_of_elements; ++i)
         		{
@@ -156,6 +165,7 @@ float insert_key(float key, string key_value, string filename)
         			// 	allkeys_value[i]=t_key_value;
         			// }
         		}
+
         		if(!check)
         		{
         			allkeys[number_of_elements]=key;
@@ -175,7 +185,7 @@ float insert_key(float key, string key_value, string filename)
         			// {
         			// 	//cout<<"allkeys["<<k<<"] == "<<allkeys[k]<<"....allkeys_value["<<k<<"]=="<<allkeys_value[k]<<endl;
         			// }
-        			float x= split(filename, allkeys, allkeys_value, isleaf);
+        			float x= split(filename, allkeys, allkeys_value, isleaf,sibling);
         			// //cout<<"\nhi\n";
         			return x;
         		}
@@ -184,11 +194,12 @@ float insert_key(float key, string key_value, string filename)
         			ofstream file (filename.c_str());
 				    if (file.is_open())
 				    {
-				    	file << number_of_elements + 1 << " 1\n";
+				    	file << number_of_elements + 1 << " 1 "<<sibling<<endl;
 				    	for (int i = 0; i < number_of_elements+1; ++i)
 				    	{
 				    		file << allkeys[i]<<" "<<allkeys_value[i]<<" ";
 				    	}
+				    	// file<<sibling<<" ";
 				    }
 				    file.close();
 				    return -1;
@@ -209,10 +220,10 @@ float insert_key(float key, string key_value, string filename)
         			myfile >> file_array[j] >> allkeys[j];
         			if(key < allkeys[j])
         			{
-        				break;
+        				goto a;
         			}
         		}
-				if(i!= number_of_elements)
+				a: if(i!= number_of_elements)
 				{
 					//cout << "i == number of elemests ....calling insert with key ,key_value and file_array"<<key<<key_value<<file_array[j]<<endl;
 					float return_value= insert_key(key, key_value, file_array[j]);
@@ -259,7 +270,7 @@ float insert_key(float key, string key_value, string filename)
 				if(number_of_elements == max_keys)
 				{
 					////cout<<"Not a leaf , calling split from insert\n";
-					float x= split(filename,allkeys,file_array,isleaf);
+					float x= split(filename,allkeys,file_array,isleaf,"");
 					return x;
 				}
 				else
@@ -337,7 +348,7 @@ void queries_init(string filename)
     {  
         cout << "Unable to open file "<<filename<<endl; 
     }
-	//cout<<"All the queries have been processed\n";
+	cout<<"All the queries have been processed\n";
 }
 
 void input_init(string filename)
@@ -385,9 +396,9 @@ int main()
 	intialize_root();
 	set_maxkey_value(file_maxkeys);
 	cout<<"Inserting the points from assgn2_bplus_data.txt\n";
-	input_init(input);
-	// input_init(sample_input);
-	// cout<<"Processing the queries\n";
+	// input_init(input);
+	input_init(sample_input);
+	cout<<"Processing the queries\n";
 	// queries_init(queries);
 	return 0;
 }
